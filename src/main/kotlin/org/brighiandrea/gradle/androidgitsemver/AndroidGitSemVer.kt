@@ -4,7 +4,11 @@ import org.danilopianini.gradle.gitsemver.GitSemVer
 import org.danilopianini.gradle.gitsemver.SemanticVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-
+/**
+ * A Plugin for computing the project version based on the status of the local git repository for android.
+ *
+ * Compute both the version name and the version code.
+ */
 class AndroidGitSemVer : Plugin<Project> {
 
     override fun apply(project: Project) {

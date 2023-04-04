@@ -6,6 +6,35 @@ import org.gradle.api.provider.Property
 import java.io.File
 import kotlin.math.pow
 
+/**
+ * The plugin extension with the DSL.
+ *
+ * Supports the following properties:
+ * - [minimumVersion], defaulting to 0.1.0
+ * - [developmentIdentifier], the identifier for the in-development versions
+ * - [noTagIdentifier], the identifier for early versions of the project, when no tags are available yet
+ * - [fullHash], whether to use the full commit hash as build metadata
+ * - [maxVersionLength], cuts the version to the specified length. Useful for some destinations,
+ *      e.g., the Gradle Plugin Portal, which limits version numbers to 20 chars.
+ * - [developmentCounterLength], how many digits to use for the counter
+ * - [enforceSemanticVersioning], whether the system should fail or just warn
+ *      in case a non-SemVer compatible version gets produced
+ * - [preReleaseSeparator], how to separate the pre-relase information.
+ *      Changing this value may generate non-SemVer-compatible versions.
+ * - [buildMetadataSeparator], how to separate the pre-relase information.
+ *      Some destinations (e.g., the Gradle Plugin Portal) do not support the default value '+'.
+ *      A reasonable alternative is using '-', lifting the build metadata to a pre-release segment.
+ * - [distanceCounterRadix], the radix for the commit counter. Defaults to base 36. Bases from 2 to 36 allowed.
+ * - [versionPrefix], to be used in case tags are prefixed with some symbols before the semantic version
+ *      (e.g., v1.0.0 is prefixed with "v").
+ * - [includeLightweightTags], to be used in case lightweight tags should be considered.
+ * - [forceVersionPropertyName], the name of the property that, if set, will force the plugin to use the specified
+ *      version. By default, the property name is "forceVersion".
+ * - [incrementalCode], whether to use the incremental version code or not (default: true)
+ * - [versionCodeMajorDigits], the number of digits to use for the major version (default: 3)
+ * - [versionCodeMinorDigits], the number of digits to use for the minor version (default: 3)
+ * - [versionCodePatchDigits], the number of digits to use for the patch version (default: 3)
+ */
 @Suppress("SameParameterValue")
 open class AndroidGitSemVerExtension @JvmOverloads constructor(
     private val project: Project,
@@ -43,6 +72,9 @@ open class AndroidGitSemVerExtension @JvmOverloads constructor(
     forceVersionPropertyName,
 ) {
 
+    /**
+     * Computes the version code using the number of commits.
+     */
     private fun computeIncrementalVersionCode(): Long {
         with(project) {
             return runCommand("git", "rev-list", "--count", "HEAD")
@@ -51,8 +83,11 @@ open class AndroidGitSemVerExtension @JvmOverloads constructor(
         }
     }
 
+    /**
+     * Computes the version code using the semantic version.
+     */
     private fun computeSemanticVersionCode(): Long {
-        if (versionCodeMajorDigits.get() + versionCodeMinorDigits.get() + versionCodePatchDigits.get() > 9) {
+        if (versionCodeMajorDigits.get() + versionCodeMinorDigits.get() + versionCodePatchDigits.get() > MAX_DIGITS) {
             throw IllegalArgumentException(
                 "The sum of versionCodeMajorDigits, versionCodeMinorDigits and versionCodePatchDigits " +
                     "must be less than 9 the greatest value Google Play allows for versionCode is 2100000000.",
@@ -92,6 +127,9 @@ open class AndroidGitSemVerExtension @JvmOverloads constructor(
             .toLong() * versionCodePatchPosition
     }
 
+    /**
+     * Computes the version code.
+     */
     fun computeVersionCode(): Long {
         return if (incrementalCode.get()) {
             computeIncrementalVersionCode()
@@ -108,6 +146,8 @@ open class AndroidGitSemVerExtension @JvmOverloads constructor(
         const val EXTENSION_NAME = "androidGitSemVer"
 
         private const val DEFAULT_RADIX = 36
+
+        private const val MAX_DIGITS = 9
 
         private inline fun <reified T> Project.propertyWithDefault(default: T): Property<T> =
             objects.property(T::class.java).apply { convention(default) }
