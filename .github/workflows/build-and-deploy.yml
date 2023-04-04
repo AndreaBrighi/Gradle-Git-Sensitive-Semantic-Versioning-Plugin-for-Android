@@ -108,6 +108,7 @@ jobs:
     needs:
       - build
       - release
+      - deploy
     if: >-
       always() && (
         contains(join(needs.*.result, ','), 'failure')
