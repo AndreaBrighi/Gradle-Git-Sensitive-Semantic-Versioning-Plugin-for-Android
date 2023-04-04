@@ -37,7 +37,7 @@ jobs:
     strategy:
       matrix:
         java: ${{ fromJson(needs.jvm-version.outputs.versions) }}
-        os: [windows, macos, ubuntu]
+        os: [ windows, macos, ubuntu ]
     runs-on: ${{ matrix.os }}-latest
     steps:
       - uses: actions/checkout@v3
@@ -51,7 +51,7 @@ jobs:
         run: chmod +x gradlew
       - name: Build with Gradle
         run: ./gradlew test
-    
+
   release:
     runs-on: ubuntu-latest
     needs:
@@ -98,13 +98,10 @@ jobs:
           cache: gradle
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-        
+
       - name: Deploy
         run: |
-          ./gradlew publishAndroidSemanticVersionPublicationToMavenRepository -PmavenCentralPwd=${{ secrets.MAVEN_CENTRAL_PASSWORD }}
-        with:
-          signing-key: ${{ secrets.SIGNING_KEY }}
-          signing-password: ${{ secrets.SIGNING_PASSWORD }}
+          ./gradlew publishAndroidSemanticVersionPublicationToMavenRepository -PmavenCentralPwd=${{ secrets.MAVEN_CENTRAL_PASSWORD }} -PsigningKey=${{ secrets.SIGNING_KEY }} -PsigningPassword=${{ secrets.SIGNING_PASSWORD }}
 
   success:
     runs-on: ubuntu-latest
