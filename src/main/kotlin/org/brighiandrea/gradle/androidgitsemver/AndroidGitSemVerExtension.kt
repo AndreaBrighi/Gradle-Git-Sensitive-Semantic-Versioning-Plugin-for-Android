@@ -19,9 +19,9 @@ import kotlin.math.pow
  * - [developmentCounterLength], how many digits to use for the counter
  * - [enforceSemanticVersioning], whether the system should fail or just warn
  *      in case a non-SemVer compatible version gets produced
- * - [preReleaseSeparator], how to separate the pre-relase information.
+ * - [preReleaseSeparator], how to separate the pre-release information.
  *      Changing this value may generate non-SemVer-compatible versions.
- * - [buildMetadataSeparator], how to separate the pre-relase information.
+ * - [buildMetadataSeparator], how to separate the pre-release information.
  *      Some destinations (e.g., the Gradle Plugin Portal) do not support the default value '+'.
  *      A reasonable alternative is using '-', lifting the build metadata to a pre-release segment.
  * - [distanceCounterRadix], the radix for the commit counter. Defaults to base 36. Bases from 2 to 36 allowed.
