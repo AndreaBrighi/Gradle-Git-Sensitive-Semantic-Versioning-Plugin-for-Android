@@ -28,7 +28,7 @@ jobs:
       versions: ${{ steps.versions.outputs.list }}
     steps:
       - run: |
-          ruby -e 'puts "list=#{((18..19).to_a).to_s}"' >> $GITHUB_OUTPUT
+          ruby -e 'puts "list=#{((16..19).to_a + [8, 11]).to_s}"' >> $GITHUB_OUTPUT
         id: versions
 
   test:
@@ -102,7 +102,7 @@ jobs:
 
       - name: Deploy
         run: |
-          ./gradlew publishAndroidSemanticVersionPublicationToMavenRepository -PmavenCentralPwd=${{ secrets.MAVEN_CENTRAL_PASSWORD }} -PsigningKey=${{ secrets.SIGNING_KEY }} -PsigningPassword=${{ secrets.SIGNING_PASSWORD }}
+          ./gradlew publishAndroidSemanticVersionPublicationToMavenRepository -PmavenCentralPwd='${{ secrets.MAVEN_CENTRAL_PASSWORD }}' -PsigningKey='${{ secrets.SIGNING_KEY }}' -PsigningPassword='${{ secrets.SIGNING_PASSWORD }}'
 
   success:
     runs-on: ubuntu-latest
