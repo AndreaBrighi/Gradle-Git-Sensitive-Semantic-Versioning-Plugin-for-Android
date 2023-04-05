@@ -20,4 +20,4 @@ gitHooks {
     createHooks(true)
 }
 
-rootProject.name = "android-git-sensitive-semantic-versioning"
+rootProject.name = "android-git-sensitive-semantic-versioning-gradle-plugin"

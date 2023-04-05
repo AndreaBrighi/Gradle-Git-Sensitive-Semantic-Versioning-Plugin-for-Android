@@ -25,8 +25,8 @@ class ProjectInfo {
         " Git-Sensitive Semantic Versioning Plugin by Danilo Pianini."
     val pluginImplementationClass = "org.brighiandrea.gradle.androidgitsemver.AndroidGitSemVer"
 
-    // val websiteUrl = "https://github.com/DanySK/$name"
-    // val vcsUrl = "$websiteUrl.git"
+    val websiteUrl = "https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android"
+    val vcsUrl = "https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android.git"
     // val scm = "scm:git:$websiteUrl.git"
     val tags = listOf("git", "semver", "semantic versioning", "vcs", "tag", "android")
 }
@@ -109,8 +109,8 @@ publishing {
                 // artifact(javadocJar)
                 // artifact(sourceJar)
                 pom {
-                    name.set(project.name)
-                    description.set(project.description)
+                    name.set(info.fullName)
+                    description.set(info.projectDetails)
                     url.set(
                         "https://github.com/" +
                             "AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android"
@@ -157,6 +157,8 @@ if (System.getenv("CI") == "true") {
 
 gradlePlugin {
     plugins {
+        website.set(info.websiteUrl)
+        vcsUrl.set(info.vcsUrl)
         create("long") {
             id = info.projectId
             displayName = info.fullName
