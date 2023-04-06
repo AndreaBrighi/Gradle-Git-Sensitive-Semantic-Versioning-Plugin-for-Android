@@ -16,7 +16,7 @@ plugins {
     alias(libs.plugins.taskTree)
 }
 
-group = "io.github.andreabrighi"
+group = "org.andreabrighi"
 class ProjectInfo {
     val projectId = "$group.$name"
     val fullName = "Gradle Git-Sensitive Semantic Versioning Plugin for Android"
