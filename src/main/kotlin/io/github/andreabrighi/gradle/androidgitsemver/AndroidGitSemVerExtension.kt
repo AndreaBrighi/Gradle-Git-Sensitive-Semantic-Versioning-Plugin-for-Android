@@ -1,4 +1,4 @@
-package org.brighiandrea.gradle.androidgitsemver
+package io.github.andreabrighi.gradle.androidgitsemver
 
 import org.danilopianini.gradle.gitsemver.GitSemVerExtension
 import org.gradle.api.Project

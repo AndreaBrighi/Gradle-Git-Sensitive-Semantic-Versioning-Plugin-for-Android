@@ -177,7 +177,7 @@ internal class Tests : StringSpec(
             file("build.gradle.kts") {
                 """
                 plugins {
-                    id("org.brighiandrea.git-semver")
+                    id("io.github.andreabrighi.git-semver")
                 }
                 androidGitSemVer {
                     $pluginConfiguration

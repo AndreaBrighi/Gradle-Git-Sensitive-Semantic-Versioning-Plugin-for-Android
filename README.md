@@ -33,7 +33,7 @@ plugins {
 
 ...
 allprojects {
-    apply(plugin = "org.brighiandrea.git-semver")
+    apply(plugin = "io.github.andreabrighi.git-semver")
     gitSemVer {
         // Your configuration
     }

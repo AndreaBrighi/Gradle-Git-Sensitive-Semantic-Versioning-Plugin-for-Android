@@ -23,7 +23,7 @@ class ProjectInfo {
     val projectDetails = "A Gradle plugin that forces semantic versioning in an Android project" +
         " (version name and version code) and relies on git to detect the project state, based on" +
         " Git-Sensitive Semantic Versioning Plugin by Danilo Pianini."
-    val pluginImplementationClass = "org.brighiandrea.gradle.androidgitsemver.AndroidGitSemVer"
+    val pluginImplementationClass = "io.github.andreabrighi.gradle.androidgitsemver.AndroidGitSemVer"
 
     val websiteUrl = "https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android"
     val vcsUrl = "https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android.git"
