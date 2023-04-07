@@ -1,3 +1,22 @@
+## [1.0.1](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/1.0.0...1.0.1) (2023-04-07)
+
+
+### Bug Fixes
+
+* used package io.github.andreabrighi ([82d0337](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/82d03377cde57b2653fc69b71069ac486d14f6a4))
+
+
+### General maintenance
+
+* add node_modules to .gitignore ([ce3a732](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/ce3a732449c1bfb854988996010c3fa71963ef58))
+* improved README.md ([c6ef98e](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/c6ef98e126b3edae39cd9d6040796f95e765d8e1))
+* improved README.md ([b9a7d82](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/b9a7d82cb331261a14715bd0c85a5faef4513a88))
+
+
+### Build and continuous integration
+
+* add publishing to sonatype ([a280d4a](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/a280d4a759bffcf2fe1c471367f8b8e8d0b8768d))
+
 ## 1.0.0 (2023-04-06)
 
 
