@@ -1,9 +1,10 @@
 # Git sensitive Semantic Versioning (SemVer) Gradle Plugin for Android
-A Gradle plugin that forces semantic versioning in an Android project (version name and version code) and relies on git to detect 
+
+A Gradle plugin that forces semantic versioning in an Android project (version name and version code) and relies on git to detect
 the project state, based on  [Git-Sensitive Semantic Versioning Plugin by Danilo Pianini](https://github.com/DanySK/git-sensitive-semantic-versioning-gradle-plugin) .
 
-
 ## Rationale
+
 [Semantic Versioning](https://semver.org/) introduces a way to meaningfully version software.
 At the same time, git carries the project history with it.
 It sounds rather reasonable to mix them together, and have the project react to the git status.
@@ -96,13 +97,13 @@ gitSemVer {
 }
 ```
 
-
 ### Manually forcing the version computation early
 
 The plugin sets the project version by scheduling a call to the `assignGitSemanticVersion()` using `project.afterEvaluate`.
 This should be fine for most use cases, but you might need the version of the project to be set early in the configuration phase.
 If so, you can manually call `assignGitSemanticVersion()` from within the plugin configuration block, *after* all options have been configured
 (if any configuration was performed):
+
 ```kotlin
 gitSemVer {
     // Your configuration
