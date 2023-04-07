@@ -22,11 +22,33 @@ The plugin generates the following:
 
 ### Importing the plugin
 
+in project `build.gradle` file, add the following:
+
 ```kotlin
 plugins {
-    id("org.danilopianini.git-sensitive-semantic-versioning") version "0.1.0"
+    id("io.github.andreabrighi.android-git-sensitive-semantic-versioning-gradle-plugin") version "1.0.0"
 }
 // Rest of your buildscript using project.version
+
+...
+allprojects {
+    apply(plugin = "org.brighiandrea.git-semver")
+    gitSemVer {
+        // Your configuration
+    }
+}
+```
+
+In your `build.gradle` file, of the app module:
+
+```kotlin
+    android {
+        defaultConfig {
+            ...
+            versionCode = gitSemVer.computeVersionCode()
+            versionName = gitSemVer.computeVersion()
+        }
+    }
 ```
 
 ### Plugin options
@@ -56,6 +78,24 @@ gitSemVer {
     excludeLightweightTags()
 }
 ```
+
+### Code Version computation
+
+The plugin computes the version code by using two algorithms:
+    - The first one is based on the number of commits in the current branch (default).
+    - The second one is based on the version name.
+
+To use the second algorithm:
+
+```kotlin
+gitSemVer {
+    incrementalCode.set(true) // Whether the version code should be incremented with the commit distance
+    versionCodeMajorDigits.set(3) // How many digits for the major version (default 3)
+    versionCodeMinorDigits.set(3) // How many digits for the minor version (default 3)
+    versionCodePatchDigits.set(3) // How many digits for the patch version (default 3)
+}
+```
+
 
 ### Manually forcing the version computation early
 
