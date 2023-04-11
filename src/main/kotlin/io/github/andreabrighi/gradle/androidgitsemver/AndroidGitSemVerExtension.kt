@@ -75,10 +75,10 @@ open class AndroidGitSemVerExtension @JvmOverloads constructor(
     /**
      * Computes the version code using the number of commits.
      */
-    private fun computeIncrementalVersionCode(): Long {
+    private fun computeIncrementalVersionCode(): Int {
         with(project) {
             return runCommand("git", "rev-list", "--count", "HEAD")
-                ?.toLong()
+                ?.toInt()
                 ?: 0
         }
     }
@@ -86,7 +86,7 @@ open class AndroidGitSemVerExtension @JvmOverloads constructor(
     /**
      * Computes the version code using the semantic version.
      */
-    private fun computeSemanticVersionCode(): Long {
+    private fun computeSemanticVersionCode(): Int {
         if (versionCodeMajorDigits.get() + versionCodeMinorDigits.get() + versionCodePatchDigits.get() > MAX_DIGITS) {
             throw IllegalArgumentException(
                 "The sum of versionCodeMajorDigits, versionCodeMinorDigits and versionCodePatchDigits " +
@@ -98,39 +98,39 @@ open class AndroidGitSemVerExtension @JvmOverloads constructor(
                 .split(preReleaseSeparator.get())[0]
                 .split(".")
         val versionCodeMajorPosition =
-            (10.0).pow(versionCodeMinorDigits.get() + versionCodePatchDigits.get().toDouble()).toLong()
-        val versionCodeMinorPosition = (10.0).pow(versionCodePatchDigits.get().toDouble()).toLong()
-        val versionCodePatchPosition = 1L
-        if (parts[0].toLong() >= (10.0).pow(versionCodeMajorDigits.get().toDouble()).toLong()) {
+            (10.0).pow(versionCodeMinorDigits.get() + versionCodePatchDigits.get().toDouble()).toInt()
+        val versionCodeMinorPosition = (10.0).pow(versionCodePatchDigits.get().toDouble()).toInt()
+        val versionCodePatchPosition = 1
+        if (parts[0].toInt() >= (10.0).pow(versionCodeMajorDigits.get().toDouble()).toInt()) {
             throw IllegalArgumentException(
                 "The major version is too big for the versionCode. The maximum value for versionCodeMajorDigits " +
-                    "is ${(10.0).pow(versionCodeMajorDigits.get().toDouble()).toLong() - 1}.",
+                    "is ${(10.0).pow(versionCodeMajorDigits.get().toDouble()).toInt() - 1}.",
             )
         }
-        if (parts[1].toLong() >= (10.0).pow(versionCodeMinorDigits.get().toDouble()).toLong()) {
+        if (parts[1].toInt() >= (10.0).pow(versionCodeMinorDigits.get().toDouble()).toLong()) {
             throw IllegalArgumentException(
                 "The minor version is too big for the versionCode. " +
                     "The maximum value for versionCodeMinorDigits is " +
-                    "${(10.0).pow(versionCodeMinorDigits.get().toDouble()).toLong() - 1}.",
+                    "${(10.0).pow(versionCodeMinorDigits.get().toDouble()).toInt() - 1}.",
             )
         }
-        if (parts[2].toLong() >= (10.0).pow(versionCodePatchDigits.get().toDouble()).toLong()) {
+        if (parts[2].toInt() >= (10.0).pow(versionCodePatchDigits.get().toDouble()).toInt()) {
             throw IllegalArgumentException(
                 "The patch version is too big for the versionCode. " +
                     "The maximum value for versionCodePatchDigits is " +
-                    "${(10.0).pow(versionCodePatchDigits.get().toDouble()).toLong() - 1}.",
+                    "${(10.0).pow(versionCodePatchDigits.get().toDouble()).toInt() - 1}.",
             )
         }
         return parts[0]
-            .toLong() * versionCodeMajorPosition + parts[1]
-            .toLong() * versionCodeMinorPosition + parts[2]
-            .toLong() * versionCodePatchPosition
+            .toInt() * versionCodeMajorPosition + parts[1]
+            .toInt() * versionCodeMinorPosition + parts[2]
+            .toInt() * versionCodePatchPosition
     }
 
     /**
      * Computes the version code.
      */
-    fun computeVersionCode(): Long {
+    fun computeVersionCode(): Int {
         return if (incrementalCode.get()) {
             computeIncrementalVersionCode()
         } else {
