@@ -1,6 +1,8 @@
 name: CI/CD process
 on:
   push:
+    paths-ignore:
+      - '**/README.md'
   workflow_dispatch:
 
 jobs:
