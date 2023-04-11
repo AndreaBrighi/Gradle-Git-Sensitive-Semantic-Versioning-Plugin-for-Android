@@ -34,7 +34,7 @@ plugins {
 ...
 allprojects {
     apply(plugin = "io.github.andreabrighi.git-semver")
-    gitSemVer {
+    androidGitSemVer {
         // Your configuration
     }
 }
@@ -46,8 +46,8 @@ In your `build.gradle` file, of the app module:
     android {
         defaultConfig {
             ...
-            versionCode = gitSemVer.computeVersionCode()
-            versionName = gitSemVer.computeVersion()
+            versionCode = androidGitSemVer.computeVersionCode()
+            versionName = androidGitSemVer.computeVersion()
         }
     }
 ```
@@ -55,7 +55,7 @@ In your `build.gradle` file, of the app module:
 ### Plugin options
 
 ```kotlin
-gitSemVer {
+androidGitSemVer {
     minimumVersion.set("0.1.0")
     developmentIdentifier.set("dev")
     noTagIdentifier.set("archeo")
@@ -89,7 +89,7 @@ The plugin computes the version code by using two algorithms:
 To use the second algorithm:
 
 ```kotlin
-gitSemVer {
+androidGitSemVer {
     incrementalCode.set(true) // Whether the version code should be incremented with the commit distance
     versionCodeMajorDigits.set(3) // How many digits for the major version (default 3)
     versionCodeMinorDigits.set(3) // How many digits for the minor version (default 3)
@@ -105,7 +105,7 @@ If so, you can manually call `assignGitSemanticVersion()` from within the plugin
 (if any configuration was performed):
 
 ```kotlin
-gitSemVer {
+androidGitSemVer {
     // Your configuration
     assignGitSemanticVersion()
 }
@@ -124,7 +124,7 @@ By default, the property name is `forceVersion`, but you can change the property
 If a custom property name is used, the plugin will look for the property with the given name:
 
 ```kotlin
-gitSemVer {
+androidGitSemVer {
     forceVersionPropertyName.set("myCustomPropertyVersion")
 }
 ```
