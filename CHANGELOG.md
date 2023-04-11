@@ -1,3 +1,15 @@
+## [1.0.2](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/1.0.1...1.0.2) (2023-04-11)
+
+
+### Bug Fixes
+
+* for version code used Int instead of Long ([3898f89](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/3898f89ea38052e91a3f824d06fba8b85ce909c4))
+
+
+### General maintenance
+
+* update README.md, after test with published version ([522ae75](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/522ae7562b243cc03e1b70bddf8c5fc716d4ee45))
+
 ## [1.0.1](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/1.0.0...1.0.1) (2023-04-07)
 
 
