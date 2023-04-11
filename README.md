@@ -27,7 +27,7 @@ in project `build.gradle` file, add the following:
 
 ```kotlin
 plugins {
-    id("io.github.andreabrighi.android-git-sensitive-semantic-versioning-gradle-plugin") version "1.0.0"
+    id("io.github.andreabrighi.android-git-sensitive-semantic-versioning-gradle-plugin") version "1.0.2"
 }
 // Rest of your buildscript using project.version
 
