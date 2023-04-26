@@ -47,14 +47,6 @@ multiJvm {
     maximumSupportedJvmVersion.set(latestJavaSupportedByGradle)
 }
 
-repositories {
-    mavenCentral()
-    gradlePluginPortal()
-}
-multiJvm {
-    maximumSupportedJvmVersion.set(latestJavaSupportedByGradle)
-}
-
 dependencies {
     api(gradleApi())
     api(gradleKotlinDsl())
