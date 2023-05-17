@@ -1,7 +1,4 @@
 {
-  "schedule": [
-    "before 3am on the first day of the month"
-  ],
   "groupName": "all dependencies",
   "groupSlug": "all",
   "lockFileMaintenance": {
