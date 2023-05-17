@@ -23,26 +23,19 @@ The plugin generates the following:
 
 ### Importing the plugin
 
-in project `build.gradle` file, add the following:
+In your `build.gradle.kts` file of the app module add the following:
 
 ```kotlin
 plugins {
     id("io.github.andreabrighi.android-git-sensitive-semantic-versioning-gradle-plugin") version "1.0.2"
 }
-// Rest of your buildscript using project.version
+// Rest of your buildscript
 
 ...
-allprojects {
-    apply(plugin = "io.github.andreabrighi.git-semver")
-    androidGitSemVer {
-        // Your configuration
-    }
+androidGitSemVer {
+    // Your configuration
 }
-```
-
-In your `build.gradle` file, of the app module:
-
-```kotlin
+...
     android {
         defaultConfig {
             ...
