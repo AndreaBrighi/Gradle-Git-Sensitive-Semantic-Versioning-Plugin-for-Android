@@ -87,11 +87,13 @@ open class AndroidGitSemVerExtension @JvmOverloads constructor(
      * Computes the version code using the semantic version.
      */
     private fun computeSemanticVersionCode(): Int {
-        if (versionCodeMajorDigits.get() + versionCodeMinorDigits.get() + versionCodePatchDigits.get() > MAX_DIGITS) {
-            throw IllegalArgumentException(
-                "The sum of versionCodeMajorDigits, versionCodeMinorDigits and versionCodePatchDigits " +
-                    "must be less than 9 the greatest value Google Play allows for versionCode is 2100000000.",
-            )
+        require(
+            versionCodeMajorDigits.get() +
+                versionCodeMinorDigits.get() +
+                versionCodePatchDigits.get() <= MAX_DIGITS,
+        ) {
+            "The sum of versionCodeMajorDigits, versionCodeMinorDigits and versionCodePatchDigits " +
+                "must be less than 9 the greatest value Google Play allows for versionCode is 2100000000."
         }
         val parts =
             computeVersion()
@@ -101,25 +103,19 @@ open class AndroidGitSemVerExtension @JvmOverloads constructor(
             (10.0).pow(versionCodeMinorDigits.get() + versionCodePatchDigits.get().toDouble()).toInt()
         val versionCodeMinorPosition = (10.0).pow(versionCodePatchDigits.get().toDouble()).toInt()
         val versionCodePatchPosition = 1
-        if (parts[0].toInt() >= (10.0).pow(versionCodeMajorDigits.get().toDouble()).toInt()) {
-            throw IllegalArgumentException(
-                "The major version is too big for the versionCode. The maximum value for versionCodeMajorDigits " +
-                    "is ${(10.0).pow(versionCodeMajorDigits.get().toDouble()).toInt() - 1}.",
-            )
+        require(parts[0].toInt() < (10.0).pow(versionCodeMajorDigits.get().toDouble()).toInt()) {
+            "The major version is too big for the versionCode. The maximum value for versionCodeMajorDigits " +
+                "is ${(10.0).pow(versionCodeMajorDigits.get().toDouble()).toInt() - 1}."
         }
-        if (parts[1].toInt() >= (10.0).pow(versionCodeMinorDigits.get().toDouble()).toLong()) {
-            throw IllegalArgumentException(
-                "The minor version is too big for the versionCode. " +
-                    "The maximum value for versionCodeMinorDigits is " +
-                    "${(10.0).pow(versionCodeMinorDigits.get().toDouble()).toInt() - 1}.",
-            )
+        require(parts[1].toInt() < (10.0).pow(versionCodeMinorDigits.get().toDouble()).toLong()) {
+            "The minor version is too big for the versionCode. " +
+                "The maximum value for versionCodeMinorDigits is " +
+                "${(10.0).pow(versionCodeMinorDigits.get().toDouble()).toInt() - 1}."
         }
-        if (parts[2].toInt() >= (10.0).pow(versionCodePatchDigits.get().toDouble()).toInt()) {
-            throw IllegalArgumentException(
-                "The patch version is too big for the versionCode. " +
-                    "The maximum value for versionCodePatchDigits is " +
-                    "${(10.0).pow(versionCodePatchDigits.get().toDouble()).toInt() - 1}.",
-            )
+        require(parts[2].toInt() < (10.0).pow(versionCodePatchDigits.get().toDouble()).toInt()) {
+            "The patch version is too big for the versionCode. " +
+                "The maximum value for versionCodePatchDigits is " +
+                "${(10.0).pow(versionCodePatchDigits.get().toDouble()).toInt() - 1}."
         }
         return parts[0]
             .toInt() * versionCodeMajorPosition + parts[1]
