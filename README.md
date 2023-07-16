@@ -83,7 +83,7 @@ To use the second algorithm:
 
 ```kotlin
 androidGitSemVer {
-    incrementalCode.set(falsse) // Whether the version code should be with sematic versioning
+    incrementalCode.set(true) // Whether the version code should be incremented with the commit distance
     versionCodeMajorDigits.set(3) // How many digits for the major version (default 3)
     versionCodeMinorDigits.set(3) // How many digits for the minor version (default 3)
     versionCodePatchDigits.set(3) // How many digits for the patch version (default 3)
