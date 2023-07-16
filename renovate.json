@@ -1,20 +1,6 @@
 {
-  "schedule": [
-    "before 3am on the first day of the month"
+  "extends": [
+    "config:base"
   ],
-  "groupName": "all dependencies",
-  "groupSlug": "all",
-  "lockFileMaintenance": {
-    "enabled": false
-  },
-  "packageRules": [
-    {
-      "groupName": "all dependencies",
-      "groupSlug": "all",
-      "matchPackagePatterns": [
-        "*"
-      ]
-    }
-  ],
-  "separateMajorMinor": false
+  "schedule": ["every weekend"]
 }
