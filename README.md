@@ -3,6 +3,16 @@
 A Gradle plugin that forces semantic versioning in an Android project (version name and version code) and relies on git to detect
 the project state, based on  [Git-Sensitive Semantic Versioning Plugin by Danilo Pianini](https://github.com/DanySK/git-sensitive-semantic-versioning-gradle-plugin) .
 
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=AndreaBrighi_Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=project=AndreaBrighi_Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=AndreaBrighi_Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android&metric=bugs)](https://sonarcloud.io/summary/new_code?id=project=AndreaBrighi_Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=AndreaBrighi_Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=AndreaBrighi_Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=AndreaBrighi_Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=AndreaBrighi_Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=AndreaBrighi_Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=project=AndreaBrighi_Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=AndreaBrighi_Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=project=AndreaBrighi_Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=AndreaBrighi_Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=project=AndreaBrighi_Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=AndreaBrighi_Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=project=AndreaBrighi_Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=AndreaBrighi_Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=project=AndreaBrighi_Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android)
+
 ## Rationale
 
 [Semantic Versioning](https://semver.org/) introduces a way to meaningfully version software.
