@@ -1,3 +1,64 @@
+## [1.0.3](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/1.0.2...1.0.3) (2023-09-06)
+
+
+### Dependency updates
+
+* **deps:** update all dependencies ([805497f](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/805497f4e99128d6e6334e1d706532cbd663087a))
+* **deps:** update dependency gradle to v8.2.1 ([09cb7d6](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/09cb7d6c07b95d2592fd1b50ef1ab06a0faa1658))
+* **deps:** update dependency gradle to v8.3 ([313fcca](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/313fcca4f297db84df08c07a3b0aa19019f6f35f))
+* **deps:** update dependency org.jetbrains.dokka to v1.8.20 ([889f4ed](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/889f4edc0b9780f4111ecfe551aa3fae27318d6d))
+* **deps:** update dependency org.jetbrains.dokka to v1.9.0 ([a788a61](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/a788a61241145b2a9829f186c7f7a00a7958a8f6))
+* **deps:** update dependency org.jetbrains.kotlin.jvm to v1.9.0 ([a273f57](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/a273f575777a4d91c3e4059bd8bd59fa741d77bc))
+* **deps:** update dependency org.jetbrains.kotlin.jvm to v1.9.10 ([904d6cb](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/904d6cbc03be19e4c5a611f73ee9df839c914dde))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.41 ([36c539a](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/36c539af95c1fd6e9114dcb7ec70067ee5152706))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.43 ([b082f83](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/b082f832ca4998de22a2c9288112286d0cb4197f))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.46 ([fb44129](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/fb441292078925c7124b0118e0c7c9bf570b3751))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.53 ([732f094](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/732f094fe085ddc647cd904a9703ce54e0056231))
+* **deps:** update gitsemver to v1.1.10 ([465e12f](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/465e12f9740b96945ca7f01f11df303ab2ae314b))
+* **deps:** update node.js to 18.17 ([2b3a907](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/2b3a907999ac0516b30d2303703e25a91daecd95))
+* **deps:** update plugin com.gradle.enterprise to v3.13.4 ([d274fdb](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/d274fdb650245f62d223a04fad624072fddc5845))
+* **deps:** update plugin com.gradle.enterprise to v3.14 ([1147428](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/114742831863bdecbbf7faea3cc081f223efb095))
+* **deps:** update plugin com.gradle.enterprise to v3.14.1 ([48b2c57](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/48b2c577b15718ad4d4a43db5e313ff2f7ef4192))
+* **deps:** update plugin gradle-plugin-publish to v1.2.1 ([42fbe54](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/42fbe54a0d61759464639f0c4ef9f39b0e624fb4))
+* **deps:** update plugin kotlin-qa to v0.47.1 ([cf10385](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/cf103850e45be6fa121b075db00915cfd2e09ffb))
+* **deps:** update plugin kotlin-qa to v0.48.0 ([12eeadd](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/12eeadd487ea5b8e0dcafe7f548bc0b2ab438980))
+* **deps:** update plugin kotlin-qa to v0.49.0 ([3ec1ee9](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/3ec1ee94372b188047ba0a5fcf6c845130289b3b))
+* **deps:** update plugin kotlin-qa to v0.49.1 ([849172a](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/849172a76ef56c44d35a86858b7dd9b7cbe7e03b))
+* **deps:** update plugin multijvmtesting to v0.5.4 ([107b0a3](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/107b0a3e348e180cc9cf7bf0aec296435baa248b))
+* **deps:** update plugin multijvmtesting to v0.5.5 ([0bacf77](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/0bacf770f1e609475317bcee5cff82423baf2ffc))
+* **deps:** update plugin org.danilopianini.gradle-pre-commit-git-hooks to v1.1.10 ([f4121d9](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/f4121d94c42dd732579d5b1b0fc4b11eeb2ad7dc))
+* **deps:** update plugin org.danilopianini.gradle-pre-commit-git-hooks to v1.1.9 ([093f0f5](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/093f0f51705f0f059800aedd6b7914f4c6536103))
+* **deps:** update plugin org.gradle.toolchains.foojay-resolver-convention to v0.6.0 ([df07c9f](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/df07c9f78ad5dbc47a699e98fc01d14a490276c6))
+* **deps:** update plugin org.gradle.toolchains.foojay-resolver-convention to v0.7.0 ([8f94e89](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/8f94e8949d45156a1d0e200aeb071707e9daf767))
+* **deps:** update plugin publishoncentral to v5.0.10 ([0f8e80f](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/0f8e80f536e107e2a4f2d0e0aa4e8866fd85b12a))
+* **deps:** update plugin publishoncentral to v5.0.11 ([5de91ba](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/5de91ba79e8492e2139b900ea284b1ed79d96fe6))
+* **deps:** update plugin publishoncentral to v5.0.13 ([1c765bb](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/1c765bbf84a346060803b68c74878ed2478992b2))
+
+
+### Bug Fixes
+
+* **deps:** update kotest to v5.7.2 ([1745aa5](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/1745aa5e6880fd1738dd4bf1adc47907ae2669a5))
+
+
+### Build and continuous integration
+
+* change renovate settings ([a56da21](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/a56da21e0b794dee5eb485416acc4a464c2faf16))
+* removed duplicated configuration ([6e11c47](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/6e11c4748843da46b41be412f7cdb28dd9052dda))
+* removed README.md from file that triggers CI ([fadb8a9](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/fadb8a9ef3a7ac11f5d9a23c0b68499102ed51d1))
+
+
+### General maintenance
+
+* **build:** refactor dependency update ([7e5ce9f](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/7e5ce9f6178892b1b02e320a2d33d7102dcc1192))
+* fix typo in README ([71f849c](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/71f849ca03d9c2f38906689a39f464d583b5ad2c))
+* In README add badge ([412b6eb](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/412b6eb71740dc54789f671e15ae35c56a0dd532))
+* **renovate:** add renovate configuration ([5b2a276](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/5b2a2763a45b6a4b3e6a1f2a08a5be6a2aa66b0c))
+* **renovate:** add renovate configuration ([8c7df8c](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/8c7df8c69cb4e93fcba74f244f59dc7051f1cb3f))
+* **renovate:** add schedule first day of the month ([43afcbd](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/43afcbd6a224536d1dfb23abf9016ea084663cb7))
+* update README ([5ff89b4](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/5ff89b4b5255ad40997bae271096f5f99ff86aa0))
+* update README.md for version 1.0.2 ([c6f346b](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/c6f346ba0af6499e256cace2d23893505033cd5e))
+* use require instead of if and throw ([ea1d15c](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/ea1d15cba017f7110afee488d37d2064386b7ffb))
+
 ## [1.0.2](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/1.0.1...1.0.2) (2023-04-11)
 
 
