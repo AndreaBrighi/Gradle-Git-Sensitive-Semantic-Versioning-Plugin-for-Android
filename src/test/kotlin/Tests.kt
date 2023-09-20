@@ -97,6 +97,24 @@ internal class Tests : StringSpec(
             println(resultCode)
             resultCode shouldContain "2"
         }
+
+        "test issues #40 case" {
+            val project = configuredPlugin(
+                """
+                minimumVersion.set("2.2.265")
+                versionPrefix.set("v")
+                incrementalCode.set(false)
+                """.trimIndent(),
+            ) {
+                initGit()
+            }
+            val result = project.runGradle()
+            println(result)
+            result shouldContain "2.2.265"
+            val resultCode = project.runGradleCode()
+            println(resultCode)
+            resultCode shouldContain "2002265"
+        }
     },
 ) {
     companion object {
