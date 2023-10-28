@@ -80,6 +80,8 @@ androidGitSemVer {
     versionPrefix.set("")
     // This reproduces the behavior of the plugin at version 0.x.y: ignores non-annotated (lightweight) tags.
     excludeLightweightTags()
+    // Compute the next upgrade type (major/minor/patch) based on commit messages; defaults to patch regardless of the commits.
+    commitNameBasedUpdateStrategy { UpdateType.PATCH }
 }
 ```
 
