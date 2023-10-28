@@ -6,7 +6,7 @@ kotest = "5.7.2"
 [libraries]
 kotest-junit5-jvm = { module = "io.kotest:kotest-runner-junit5-jvm", version.ref = "kotest" }
 kotest-assertions-core-jvm = { module = "io.kotest:kotest-assertions-core-jvm", version.ref = "kotest" }
-git-sem-ver = { module = "org.danilopianini:git-sensitive-semantic-versioning-gradle-plugin", version = "1.1.15" }
+git-sem-ver = { module = "org.danilopianini:git-sensitive-semantic-versioning-gradle-plugin", version = "2.0.0" }
 
 [bundles]
 kotlin-testing = [ "kotest-junit5-jvm", "kotest-assertions-core-jvm" ]
