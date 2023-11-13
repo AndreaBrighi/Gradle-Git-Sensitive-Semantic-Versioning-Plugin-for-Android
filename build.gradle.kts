@@ -1,3 +1,4 @@
+import io.github.andreabrighi.gradle.gitsemver.conventionalcommit.ConventionalCommit
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jetbrains.kotlin.config.KotlinCompilerVersion.VERSION as KOTLIN_VERSION
@@ -14,6 +15,18 @@ plugins {
     signing
     `maven-publish`
     alias(libs.plugins.taskTree)
+}
+
+gitSemVer {
+    maxVersionLength.set(20)
+    buildMetadataSeparator.set("-")
+    commitNameBasedUpdateStrategy(ConventionalCommit::semanticVersionUpdate)
+}
+
+buildscript {
+    dependencies {
+        classpath(libs.convetional)
+    }
 }
 
 group = "io.github.andreabrighi"
@@ -33,11 +46,6 @@ class ProjectInfo {
 }
 
 val info = ProjectInfo()
-
-gitSemVer {
-    maxVersionLength.set(20)
-    buildMetadataSeparator.set("-")
-}
 
 repositories {
     mavenCentral()
