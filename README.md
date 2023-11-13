@@ -135,3 +135,9 @@ androidGitSemVer {
 ```
 
 `./gradlew -PmyCustomPropertyVersion=1.2.3 <task list>` will result in the project version being set to `1.2.3`.
+
+### Using conventional commits?
+
+This plugin can be configured to use the [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) to determine the next version
+through another plugin.
+Visit the [conventional commits extension for git-sensitive-semantic-versioning-gradle-plugin](https://github.com/AndreaBrighi/conventional-commit-strategy-for-git-sensitive-semantic-versioning-gradle-plugin) to learn more.
