@@ -1,8 +1,10 @@
 package io.github.andreabrighi.gradle.androidgitsemver
 
 import org.danilopianini.gradle.gitsemver.GitSemVerExtension
-import org.gradle.api.Project
+import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.Property
+import org.gradle.api.provider.ProviderFactory
+import org.slf4j.Logger
 import java.io.File
 import kotlin.math.pow
 
@@ -37,26 +39,34 @@ import kotlin.math.pow
  */
 @Suppress("SameParameterValue")
 open class AndroidGitSemVerExtension @JvmOverloads constructor(
-    private val project: Project,
-    minimumVersion: Property<String> = project.propertyWithDefault("0.1.0"),
-    developmentIdentifier: Property<String> = project.propertyWithDefault("dev"),
-    noTagIdentifier: Property<String> = project.propertyWithDefault("archeo"),
-    fullHash: Property<Boolean> = project.propertyWithDefault(false),
-    maxVersionLength: Property<Int> = project.propertyWithDefault(Int.MAX_VALUE),
-    developmentCounterLength: Property<Int> = project.propertyWithDefault(2),
-    enforceSemanticVersioning: Property<Boolean> = project.propertyWithDefault(true),
-    preReleaseSeparator: Property<String> = project.propertyWithDefault("-"),
-    buildMetadataSeparator: Property<String> = project.propertyWithDefault("+"),
-    distanceCounterRadix: Property<Int> = project.propertyWithDefault(DEFAULT_RADIX),
-    versionPrefix: Property<String> = project.propertyWithDefault(""),
-    includeLightweightTags: Property<Boolean> = project.propertyWithDefault(true),
-    forceVersionPropertyName: Property<String> = project.propertyWithDefault("forceVersion"),
-    val incrementalCode: Property<Boolean> = project.propertyWithDefault(true),
-    val versionCodeMajorDigits: Property<Int> = project.propertyWithDefault(3),
-    val versionCodeMinorDigits: Property<Int> = project.propertyWithDefault(3),
-    val versionCodePatchDigits: Property<Int> = project.propertyWithDefault(3),
+    providerFactory: ProviderFactory,
+    objectFactory: ObjectFactory,
+    projectDir: File,
+    version: String,
+    logger: Logger,
+    minimumVersion: Property<String> = objectFactory.propertyWithDefault("0.1.0"),
+    developmentIdentifier: Property<String> = objectFactory.propertyWithDefault("dev"),
+    noTagIdentifier: Property<String> = objectFactory.propertyWithDefault("archeo"),
+    fullHash: Property<Boolean> = objectFactory.propertyWithDefault(false),
+    maxVersionLength: Property<Int> = objectFactory.propertyWithDefault(Int.MAX_VALUE),
+    developmentCounterLength: Property<Int> = objectFactory.propertyWithDefault(2),
+    enforceSemanticVersioning: Property<Boolean> = objectFactory.propertyWithDefault(true),
+    preReleaseSeparator: Property<String> = objectFactory.propertyWithDefault("-"),
+    buildMetadataSeparator: Property<String> = objectFactory.propertyWithDefault("+"),
+    distanceCounterRadix: Property<Int> = objectFactory.propertyWithDefault(DEFAULT_RADIX),
+    versionPrefix: Property<String> = objectFactory.propertyWithDefault(""),
+    includeLightweightTags: Property<Boolean> = objectFactory.propertyWithDefault(true),
+    forceVersionPropertyName: Property<String> = objectFactory.propertyWithDefault("forceVersion"),
+    val incrementalCode: Property<Boolean> = objectFactory.propertyWithDefault(true),
+    val versionCodeMajorDigits: Property<Int> = objectFactory.propertyWithDefault(3),
+    val versionCodeMinorDigits: Property<Int> = objectFactory.propertyWithDefault(3),
+    val versionCodePatchDigits: Property<Int> = objectFactory.propertyWithDefault(3),
 ) : GitSemVerExtension(
-    project,
+    providerFactory,
+    objectFactory,
+    projectDir,
+    version,
+    logger,
     minimumVersion,
     developmentIdentifier,
     noTagIdentifier,
@@ -75,13 +85,9 @@ open class AndroidGitSemVerExtension @JvmOverloads constructor(
     /**
      * Computes the version code using the number of commits.
      */
-    private fun computeIncrementalVersionCode(): Int {
-        with(project) {
-            return runCommand("git", "rev-list", "--count", "HEAD")
-                ?.toInt()
-                ?: 0
-        }
-    }
+    private fun computeIncrementalVersionCode() = runCommand("git", "rev-list", "--count", "HEAD")
+        ?.toInt()
+        ?: 0
 
     /**
      * Computes the version code using the semantic version.
@@ -145,17 +151,7 @@ open class AndroidGitSemVerExtension @JvmOverloads constructor(
 
         private const val MAX_DIGITS = 9
 
-        private inline fun <reified T> Project.propertyWithDefault(default: T): Property<T> =
-            objects.property(T::class.java).apply { convention(default) }
-
-        private fun Project.runCommand(vararg cmd: String) = projectDir.runCommandInFolder(*cmd)
-
-        private fun File.runCommandInFolder(vararg cmd: String) = Runtime.getRuntime()
-            .exec(cmd, emptyArray(), this)
-            .inputStream
-            .bufferedReader()
-            .readText()
-            .trim()
-            .takeIf { it.isNotEmpty() }
+        private inline fun <reified T> ObjectFactory.propertyWithDefault(default: T): Property<T> =
+            property(T::class.java).apply { convention(default) }
     }
 }
