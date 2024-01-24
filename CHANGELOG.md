@@ -1,3 +1,28 @@
+## [3.0.0](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/2.0.4...3.0.0) (2024-01-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* update GitSemVer to 3.1.0. Switch to new API
+
+### Dependency updates
+
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.84 ([4d08067](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/4d08067c089176229d6097501bc815aeee841d6e))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.85 ([9823407](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/9823407bab8596a76be94b2b03b70f8c06543e17))
+* **deps:** update gitsemver to v2.0.5 ([ff97efb](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/ff97efb6c721aa93f61dacf98a8af75c6f86dbd8))
+* **deps:** update node.js to 20.11 ([7c066be](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/7c066be76789e08cf54e0cd898057b552136433e))
+* **deps:** update plugin kotlin-qa to v0.57.1 ([9226fa5](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/9226fa55cd89e41e59c003027f02ce5cb3b6d09e))
+* **deps:** update plugin kotlin-qa to v0.58.0 ([f6cc764](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/f6cc76445034f5f5596890cef6e075257570ac93))
+* **deps:** update plugin org.danilopianini.gradle-pre-commit-git-hooks to v1.1.17 ([95689e4](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/95689e4def4d1271ded3eea22082b9bf5f802899))
+* **deps:** update plugin org.danilopianini.gradle-pre-commit-git-hooks to v2 ([30e32d3](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/30e32d33d281f9a534e7057b5b9eea31850ec304))
+* **deps:** update plugin org.gradle.toolchains.foojay-resolver-convention to v0.8.0 ([02f8d37](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/02f8d3798b7ffc8d7aef75e73d5a4298766f781e))
+* **deps:** update plugin publishoncentral to v5.0.22 ([4acad2d](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/4acad2d7818906a1d36ff1698e47826b78d0f021))
+
+
+### Refactoring
+
+* update GitSemVer to 3.1.0. Switch to new API ([d1e661f](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/d1e661f0be0869cc77dd3bef0c03df555d4a462c))
+
 ## [2.0.4](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/2.0.3...2.0.4) (2023-12-23)
 
 
