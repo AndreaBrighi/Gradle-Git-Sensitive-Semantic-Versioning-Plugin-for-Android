@@ -1,3 +1,11 @@
+## [3.0.4](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/3.0.3...3.0.4) (2024-05-05)
+
+
+### Dependency updates
+
+* **core-deps:** update dependency gradle to v8.7 ([6f1934f](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/6f1934f216d542391e6ce24c3cac37da0710406e))
+* **deps:** update kotest to v5.8.1 ([315d0da](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/315d0dac170ac5e7c640d1656f45817f948dadf0))
+
 ## [3.0.3](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/3.0.2...3.0.3) (2024-05-05)
 
 
