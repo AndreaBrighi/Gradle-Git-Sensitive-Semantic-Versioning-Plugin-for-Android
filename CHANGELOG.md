@@ -1,3 +1,10 @@
+## [3.0.5](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/3.0.4...3.0.5) (2024-05-11)
+
+
+### Dependency updates
+
+* **core-deps:** update dependency org.jetbrains.kotlin.jvm to v1.9.24 ([b58a772](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/b58a772eb39692e29973d53f1ad1e7a742f6edaf))
+
 ## [3.0.4](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/3.0.3...3.0.4) (2024-05-05)
 
 
