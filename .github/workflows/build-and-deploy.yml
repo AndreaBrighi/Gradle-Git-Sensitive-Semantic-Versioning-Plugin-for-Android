@@ -43,6 +43,8 @@ jobs:
         os: [ windows, macos, ubuntu ]
     runs-on: ${{ matrix.os }}-latest
     steps:
+      - if: matrix.os == 'windows'
+        run: git config --system core.longpaths true
       - uses: actions/checkout@v4
       - name: set up JDK ${{ matrix.java }}
         uses: actions/setup-java@v4
