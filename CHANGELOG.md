@@ -1,3 +1,14 @@
+## [3.0.7](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/3.0.6...3.0.7) (2024-06-01)
+
+
+### Dependency updates
+
+* **core-deps:** update dependency gradle to v8.8 ([8125b53](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/8125b5359d0d8f2c9576f8ef86313a65dda46306))
+* **deps:** update gitsemver to v3.1.7 ([f9055b0](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/f9055b0710be55f3781263cbbee44529db3dd3a4))
+* **deps:** update plugin kotlin-qa to v0.62.1 ([659c917](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/659c91723aaf751abdf6aba219480e7816185b01))
+* **deps:** update plugin org.danilopianini.gradle-pre-commit-git-hooks to v2.0.7 ([88ca747](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/88ca747aa3ec0879e125f025ebd2ef4729b00ca6))
+* **deps:** update plugin publishoncentral to v5.1.2 ([2bb0ff7](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/2bb0ff721bad1087f6a4e4531e03d44daeb8b9f2))
+
 ## [3.0.6](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/3.0.5...3.0.6) (2024-05-25)
 
 
