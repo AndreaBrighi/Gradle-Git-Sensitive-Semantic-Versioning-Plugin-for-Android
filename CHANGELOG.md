@@ -1,3 +1,10 @@
+## [3.0.9](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/3.0.8...3.0.9) (2024-08-17)
+
+### Dependency updates
+
+* **core-deps:** update dependency gradle to v8.10 ([b29c80d](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/b29c80dccc9e260ae2ac413ea2adb630958e3b0f))
+* **deps:** update dependency io.github.andreabrighi:conventional-commit-strategy-for-git-sensitive-semantic-versioning-gradle-plugin to v1.0.12 ([47a8cbd](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/47a8cbde1a057de8e5c1325b891ec4c6aee1580a))
+
 ## [3.0.8](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/3.0.7...3.0.8) (2024-08-17)
 
 ### Dependency updates
