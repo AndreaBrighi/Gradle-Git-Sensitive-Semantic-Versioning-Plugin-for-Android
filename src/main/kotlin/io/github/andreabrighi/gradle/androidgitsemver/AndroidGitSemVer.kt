@@ -46,7 +46,7 @@ class AndroidGitSemVer @Inject constructor(
             it.doLast {
                 println(
                     "Version computed by ${GitSemVer::class.java.simpleName}: " +
-                            "${forceVersion ?: extension.computeVersion()}",
+                        "${forceVersion ?: extension.computeVersion()}",
                 )
             }
         }
@@ -56,8 +56,8 @@ class AndroidGitSemVer @Inject constructor(
             it.doLast {
                 println(
                     "Version Code computed by " +
-                            "${GitSemVer::class.java.simpleName}: " +
-                            "${forceVersion ?: extension.computeVersionCode()}",
+                        "${GitSemVer::class.java.simpleName}: " +
+                        "${forceVersion ?: extension.computeVersionCode()}",
                 )
             }
         }

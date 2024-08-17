@@ -69,7 +69,10 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-
+      - name: set up Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
       - name: set up JDK 17
         uses: actions/setup-java@v4
         with:
@@ -86,6 +89,7 @@ jobs:
           SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
           SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
           MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
+          MAVEN_USER: ${{ secrets.MAVEN_USER }}
         run: |
           npm install
           npx semantic-release

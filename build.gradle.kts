@@ -98,8 +98,9 @@ publishing {
             url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
             // Pass the pwd via -PmavenCentralPwd='yourPassword'
             val mavenCentralPwd: String? by project
+            val mavenCentralUser: String? by project
             credentials {
-                username = "andreabrighi"
+                username = mavenCentralUser
                 password = mavenCentralPwd
             }
         }
