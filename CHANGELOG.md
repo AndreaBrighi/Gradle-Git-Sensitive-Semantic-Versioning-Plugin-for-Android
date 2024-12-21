@@ -1,3 +1,9 @@
+## [3.0.16](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/3.0.15...3.0.16) (2024-12-21)
+
+### Documentation
+
+* **deps:** update dependency org.jetbrains.dokka to v2 ([#261](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/issues/261)) ([8db4b0f](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/8db4b0f8e851a3b2242471066380e8425016693e))
+
 ## [3.0.15](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/3.0.14...3.0.15) (2024-12-21)
 
 ### Dependency updates
