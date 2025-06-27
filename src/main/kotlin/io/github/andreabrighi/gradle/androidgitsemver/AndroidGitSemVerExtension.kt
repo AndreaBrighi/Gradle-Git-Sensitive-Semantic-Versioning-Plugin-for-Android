@@ -38,120 +38,120 @@ import kotlin.math.pow
  * - [versionCodePatchDigits], the number of digits to use for the patch version (default: 3)
  */
 @Suppress("SameParameterValue")
-open class AndroidGitSemVerExtension @JvmOverloads constructor(
-    providerFactory: ProviderFactory,
-    objectFactory: ObjectFactory,
-    projectDir: File,
-    version: String,
-    logger: Logger,
-    minimumVersion: Property<String> = objectFactory.propertyWithDefault("0.1.0"),
-    developmentIdentifier: Property<String> = objectFactory.propertyWithDefault("dev"),
-    noTagIdentifier: Property<String> = objectFactory.propertyWithDefault("archeo"),
-    fullHash: Property<Boolean> = objectFactory.propertyWithDefault(false),
-    maxVersionLength: Property<Int> = objectFactory.propertyWithDefault(Int.MAX_VALUE),
-    developmentCounterLength: Property<Int> = objectFactory.propertyWithDefault(2),
-    enforceSemanticVersioning: Property<Boolean> = objectFactory.propertyWithDefault(true),
-    preReleaseSeparator: Property<String> = objectFactory.propertyWithDefault("-"),
-    buildMetadataSeparator: Property<String> = objectFactory.propertyWithDefault("+"),
-    distanceCounterRadix: Property<Int> = objectFactory.propertyWithDefault(DEFAULT_RADIX),
-    versionPrefix: Property<String> = objectFactory.propertyWithDefault(""),
-    includeLightweightTags: Property<Boolean> = objectFactory.propertyWithDefault(true),
-    forceVersionPropertyName: Property<String> = objectFactory.propertyWithDefault("forceVersion"),
-    val incrementalCode: Property<Boolean> = objectFactory.propertyWithDefault(true),
-    val versionCodeMajorDigits: Property<Int> = objectFactory.propertyWithDefault(3),
-    val versionCodeMinorDigits: Property<Int> = objectFactory.propertyWithDefault(3),
-    val versionCodePatchDigits: Property<Int> = objectFactory.propertyWithDefault(3),
-) : GitSemVerExtension(
-    providerFactory,
-    objectFactory,
-    projectDir,
-    version,
-    logger,
-    minimumVersion,
-    developmentIdentifier,
-    noTagIdentifier,
-    fullHash,
-    maxVersionLength,
-    developmentCounterLength,
-    enforceSemanticVersioning,
-    preReleaseSeparator,
-    buildMetadataSeparator,
-    distanceCounterRadix,
-    versionPrefix,
-    includeLightweightTags,
-    forceVersionPropertyName,
-) {
-
-    /**
-     * Computes the version code using the number of commits.
-     */
-    private fun computeIncrementalVersionCode() = runCommand("git", "rev-list", "--count", "HEAD")
-        ?.toInt()
-        ?: 0
-
-    /**
-     * Computes the version code using the semantic version.
-     */
-    private fun computeSemanticVersionCode(): Int {
-        require(
-            versionCodeMajorDigits.get() +
-                versionCodeMinorDigits.get() +
-                versionCodePatchDigits.get() <= MAX_DIGITS,
+open class AndroidGitSemVerExtension
+    @JvmOverloads
+    constructor(
+        providerFactory: ProviderFactory,
+        objectFactory: ObjectFactory,
+        projectDir: File,
+        version: String,
+        logger: Logger,
+        minimumVersion: Property<String> = objectFactory.propertyWithDefault("0.1.0"),
+        developmentIdentifier: Property<String> = objectFactory.propertyWithDefault("dev"),
+        noTagIdentifier: Property<String> = objectFactory.propertyWithDefault("archeo"),
+        fullHash: Property<Boolean> = objectFactory.propertyWithDefault(false),
+        maxVersionLength: Property<Int> = objectFactory.propertyWithDefault(Int.MAX_VALUE),
+        developmentCounterLength: Property<Int> = objectFactory.propertyWithDefault(2),
+        enforceSemanticVersioning: Property<Boolean> = objectFactory.propertyWithDefault(true),
+        preReleaseSeparator: Property<String> = objectFactory.propertyWithDefault("-"),
+        buildMetadataSeparator: Property<String> = objectFactory.propertyWithDefault("+"),
+        distanceCounterRadix: Property<Int> = objectFactory.propertyWithDefault(DEFAULT_RADIX),
+        versionPrefix: Property<String> = objectFactory.propertyWithDefault(""),
+        includeLightweightTags: Property<Boolean> = objectFactory.propertyWithDefault(true),
+        forceVersionPropertyName: Property<String> = objectFactory.propertyWithDefault("forceVersion"),
+        val incrementalCode: Property<Boolean> = objectFactory.propertyWithDefault(true),
+        val versionCodeMajorDigits: Property<Int> = objectFactory.propertyWithDefault(3),
+        val versionCodeMinorDigits: Property<Int> = objectFactory.propertyWithDefault(3),
+        val versionCodePatchDigits: Property<Int> = objectFactory.propertyWithDefault(3),
+    ) : GitSemVerExtension(
+            providerFactory,
+            objectFactory,
+            projectDir,
+            version,
+            logger,
+            minimumVersion,
+            developmentIdentifier,
+            noTagIdentifier,
+            fullHash,
+            maxVersionLength,
+            developmentCounterLength,
+            enforceSemanticVersioning,
+            preReleaseSeparator,
+            buildMetadataSeparator,
+            distanceCounterRadix,
+            versionPrefix,
+            includeLightweightTags,
+            forceVersionPropertyName,
         ) {
-            "The sum of versionCodeMajorDigits, versionCodeMinorDigits and versionCodePatchDigits " +
-                "must be less than 9 the greatest value Google Play allows for versionCode is 2100000000."
-        }
-        val parts =
-            computeVersion()
-                .split(preReleaseSeparator.get())[0]
-                .split(".")
-        val versionCodeMajorPosition =
-            (10.0).pow(versionCodeMinorDigits.get() + versionCodePatchDigits.get().toDouble()).toInt()
-        val versionCodeMinorPosition = (10.0).pow(versionCodePatchDigits.get().toDouble()).toInt()
-        val versionCodePatchPosition = 1
-        require(parts[0].toInt() < (10.0).pow(versionCodeMajorDigits.get().toDouble()).toInt()) {
-            "The major version is too big for the versionCode. The maximum value for versionCodeMajorDigits " +
-                "is ${(10.0).pow(versionCodeMajorDigits.get().toDouble()).toInt() - 1}."
-        }
-        require(parts[1].toInt() < (10.0).pow(versionCodeMinorDigits.get().toDouble()).toLong()) {
-            "The minor version is too big for the versionCode. " +
-                "The maximum value for versionCodeMinorDigits is " +
-                "${(10.0).pow(versionCodeMinorDigits.get().toDouble()).toInt() - 1}."
-        }
-        require(parts[2].toInt() < (10.0).pow(versionCodePatchDigits.get().toDouble()).toInt()) {
-            "The patch version is too big for the versionCode. " +
-                "The maximum value for versionCodePatchDigits is " +
-                "${(10.0).pow(versionCodePatchDigits.get().toDouble()).toInt() - 1}."
-        }
-        return parts[0]
-            .toInt() * versionCodeMajorPosition + parts[1]
-            .toInt() * versionCodeMinorPosition + parts[2]
-            .toInt() * versionCodePatchPosition
-    }
-
-    /**
-     * Computes the version code.
-     */
-    fun computeVersionCode(): Int {
-        return if (incrementalCode.get()) {
-            computeIncrementalVersionCode()
-        } else {
-            computeSemanticVersionCode()
-        }
-    }
-
-    companion object {
+        /**
+         * Computes the version code using the number of commits.
+         */
+        private fun computeIncrementalVersionCode() =
+            runCommand("git", "rev-list", "--count", "HEAD")
+                ?.toInt()
+                ?: 0
 
         /**
-         * The name of the extension, namely of the DSL entry-point.
+         * Computes the version code using the semantic version.
          */
-        const val EXTENSION_NAME = "androidGitSemVer"
+        private fun computeSemanticVersionCode(): Int {
+            require(
+                versionCodeMajorDigits.get() +
+                    versionCodeMinorDigits.get() +
+                    versionCodePatchDigits.get() <= MAX_DIGITS,
+            ) {
+                "The sum of versionCodeMajorDigits, versionCodeMinorDigits and versionCodePatchDigits " +
+                    "must be less than 9 the greatest value Google Play allows for versionCode is 2100000000."
+            }
+            val parts =
+                computeVersion()
+                    .split(preReleaseSeparator.get())[0]
+                    .split(".")
+            val versionCodeMajorPosition =
+                (10.0).pow(versionCodeMinorDigits.get() + versionCodePatchDigits.get().toDouble()).toInt()
+            val versionCodeMinorPosition = (10.0).pow(versionCodePatchDigits.get().toDouble()).toInt()
+            val versionCodePatchPosition = 1
+            require(parts[0].toInt() < (10.0).pow(versionCodeMajorDigits.get().toDouble()).toInt()) {
+                "The major version is too big for the versionCode. The maximum value for versionCodeMajorDigits " +
+                    "is ${(10.0).pow(versionCodeMajorDigits.get().toDouble()).toInt() - 1}."
+            }
+            require(parts[1].toInt() < (10.0).pow(versionCodeMinorDigits.get().toDouble()).toLong()) {
+                "The minor version is too big for the versionCode. " +
+                    "The maximum value for versionCodeMinorDigits is " +
+                    "${(10.0).pow(versionCodeMinorDigits.get().toDouble()).toInt() - 1}."
+            }
+            require(parts[2].toInt() < (10.0).pow(versionCodePatchDigits.get().toDouble()).toInt()) {
+                "The patch version is too big for the versionCode. " +
+                    "The maximum value for versionCodePatchDigits is " +
+                    "${(10.0).pow(versionCodePatchDigits.get().toDouble()).toInt() - 1}."
+            }
+            return parts[0]
+                .toInt() * versionCodeMajorPosition + parts[1]
+                .toInt() * versionCodeMinorPosition + parts[2]
+                .toInt() * versionCodePatchPosition
+        }
 
-        private const val DEFAULT_RADIX = 36
+        /**
+         * Computes the version code.
+         */
+        fun computeVersionCode(): Int =
+            if (incrementalCode.get()) {
+                computeIncrementalVersionCode()
+            } else {
+                computeSemanticVersionCode()
+            }
 
-        private const val MAX_DIGITS = 9
+        companion object {
+            /**
+             * The name of the extension, namely of the DSL entry-point.
+             */
+            const val EXTENSION_NAME = "androidGitSemVer"
 
-        private inline fun <reified T> ObjectFactory.propertyWithDefault(default: T): Property<T> =
-            property(T::class.java).apply { convention(default) }
+            private const val DEFAULT_RADIX = 36
+
+            private const val MAX_DIGITS = 9
+
+            private inline fun <reified T> ObjectFactory.propertyWithDefault(default: T): Property<T> =
+                property(T::class.java).apply { convention(default) }
+        }
     }
-}

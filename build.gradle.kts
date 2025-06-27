@@ -30,12 +30,14 @@ buildscript {
 }
 
 group = "io.github.andreabrighi"
+
 class ProjectInfo {
     val projectId = "$group.$name"
     val fullName = "Gradle Git-Sensitive Semantic Versioning Plugin for Android"
-    val projectDetails = "A Gradle plugin that forces semantic versioning in an Android project" +
-        " (version name and version code) and relies on git to detect the project state, based on" +
-        " Git-Sensitive Semantic Versioning Plugin by Danilo Pianini."
+    val projectDetails =
+        "A Gradle plugin that forces semantic versioning in an Android project" +
+            " (version name and version code) and relies on git to detect the project state, based on" +
+            " Git-Sensitive Semantic Versioning Plugin by Danilo Pianini."
     val pluginImplementationClass = "io.github.andreabrighi.gradle.androidgitsemver.AndroidGitSemVer"
 
     val websiteUrl = "https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android"
