@@ -13,58 +13,63 @@ import javax.inject.Inject
  *
  * Compute both the version name and the version code.
  */
-class AndroidGitSemVer @Inject constructor(
-    private val providerFactory: ProviderFactory,
-    private val objectFactory: ObjectFactory,
-) : Plugin<Project> {
-
-    override fun apply(project: Project): Unit = with(project) {
+class AndroidGitSemVer
+    @Inject
+    constructor(
+        private val providerFactory: ProviderFactory,
+        private val objectFactory: ObjectFactory,
+    ) : Plugin<Project> {
+        override fun apply(project: Project): Unit =
+            with(project) {
         /*
          * Recursively scan project directory. If git repo is found, rely on GitSemVerExtension to inspect it.
          */
-        val extension = createExtension<AndroidGitSemVerExtension>(
-            AndroidGitSemVerExtension.EXTENSION_NAME,
-            providerFactory,
-            objectFactory,
-            projectDir,
-            version,
-            logger,
-        )
-        afterEvaluate {
-            properties[extension.forceVersionPropertyName.get()]?.let { forceVersion ->
-                require(SemanticVersion.semVerRegex.matches(it.toString())) {
-                    "The version '$it' is not a valid semantic versioning format"
+                val extension =
+                    createExtension<AndroidGitSemVerExtension>(
+                        AndroidGitSemVerExtension.EXTENSION_NAME,
+                        providerFactory,
+                        objectFactory,
+                        projectDir,
+                        version,
+                        logger,
+                    )
+                afterEvaluate {
+                    properties[extension.forceVersionPropertyName.get()]?.let { forceVersion ->
+                        require(SemanticVersion.semVerRegex.matches(it.toString())) {
+                            "The version '$it' is not a valid semantic versioning format"
+                        }
+                        logger.lifecycle(
+                            "Forcing version to $it, mandated by property '$extension.forceVersionPropertyName'",
+                        )
+                        version = forceVersion
+                    } ?: run { version = extension.assignGitSemanticVersion() }
                 }
-                logger.lifecycle(
-                    "Forcing version to $it, mandated by property '$extension.forceVersionPropertyName'",
-                )
-                version = forceVersion
-            } ?: run { version = extension.assignGitSemanticVersion() }
-        }
-        tasks.register("printGitSemVer") {
-            val forceVersion = properties[extension.forceVersionPropertyName.get()]
-            it.doLast {
-                println(
-                    "Version computed by ${GitSemVer::class.java.simpleName}: " +
-                        "${forceVersion ?: extension.computeVersion()}",
-                )
-            }
-        }
+                tasks.register("printGitSemVer") {
+                    val forceVersion = properties[extension.forceVersionPropertyName.get()]
+                    it.doLast {
+                        println(
+                            "Version computed by ${GitSemVer::class.java.simpleName}: " +
+                                "${forceVersion ?: extension.computeVersion()}",
+                        )
+                    }
+                }
 
-        tasks.register("printGitSemVerCode") {
-            val forceVersion = properties[extension.forceVersionPropertyName.get()]
-            it.doLast {
-                println(
-                    "Version Code computed by " +
-                        "${GitSemVer::class.java.simpleName}: " +
-                        "${forceVersion ?: extension.computeVersionCode()}",
-                )
+                tasks.register("printGitSemVerCode") {
+                    val forceVersion = properties[extension.forceVersionPropertyName.get()]
+                    it.doLast {
+                        println(
+                            "Version Code computed by " +
+                                "${GitSemVer::class.java.simpleName}: " +
+                                "${forceVersion ?: extension.computeVersionCode()}",
+                        )
+                    }
+                }
             }
+
+        companion object {
+            private inline fun <reified T> Project.createExtension(
+                name: String,
+                vararg args: Any?,
+            ): T = project.extensions.create(name, T::class.java, *args)
         }
     }
-
-    companion object {
-        private inline fun <reified T> Project.createExtension(name: String, vararg args: Any?): T =
-            project.extensions.create(name, T::class.java, *args)
-    }
-}
