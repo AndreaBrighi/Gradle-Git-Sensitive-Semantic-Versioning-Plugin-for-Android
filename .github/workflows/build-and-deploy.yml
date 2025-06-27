@@ -31,7 +31,7 @@ jobs:
       versions: ${{ steps.versions.outputs.list }}
     steps:
       - run: |
-          ruby -e 'puts "list=#{((17..19).to_a + [11]).to_s}"' >> $GITHUB_OUTPUT
+          ruby -e 'puts "list=#{((17..19).to_a).to_s}"' >> $GITHUB_OUTPUT
         id: versions
 
   test:
