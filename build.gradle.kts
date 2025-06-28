@@ -56,21 +56,16 @@ repositories {
 }
 
 multiJvm {
-    maximumSupportedJvmVersion.set(latestJavaSupportedByGradle)
+    jvmVersionForCompilation = 11
+    maximumSupportedJvmVersion = latestJavaSupportedByGradle
 }
 
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(11)) // Default target
-    }
-}
-
-configurations.all {
-    resolutionStrategy {
-        eachDependency {
-            if (requested.group == "org.jetbrains.kotlin" && requested.name.startsWith("kotlin-build-tools")) {
-                useVersion(kotlinVersion)
-            }
+// Enforce Kotlin version coherence
+configurations.matching { it.name != "detekt" }.all {
+    resolutionStrategy.eachDependency {
+        if (requested.group == "org.jetbrains.kotlin" && requested.name.startsWith("kotlin")) {
+            useVersion(kotlinVersion)
+            because("All Kotlin modules should use the same version, and compiler uses $kotlinVersion")
         }
     }
 }
@@ -78,18 +73,10 @@ configurations.all {
 dependencies {
     api(gradleApi())
     api(gradleKotlinDsl())
+    implementation(kotlin("stdlib-jdk8"))
     implementation(libs.git.sem.ver)
     testImplementation(gradleTestKit())
     testImplementation(libs.bundles.kotlin.testing)
-}
-
-configurations.all {
-    resolutionStrategy.eachDependency {
-        if (requested.group == "org.jetbrains.kotlin" && requested.name.startsWith("kotlin")) {
-            useVersion(kotlinVersion)
-            because("All Kotlin modules should use the same version, and compiler uses $kotlinVersion")
-        }
-    }
 }
 
 tasks {
@@ -169,10 +156,10 @@ if (System.getenv("CI") == "true") {
         useInMemoryPgpKeys(signingKey, signingPassword)
     }
 } else {
-    signing {
+    /*signing {
         useGpgCmd()
         sign(configurations.archives.get())
-    }
+    }*/
 }
 
 gradlePlugin {
