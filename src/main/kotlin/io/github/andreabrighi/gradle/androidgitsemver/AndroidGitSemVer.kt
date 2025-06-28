@@ -66,7 +66,7 @@ class AndroidGitSemVer
                 }
             }
 
-        companion object {
+        private companion object {
             private inline fun <reified T> Project.createExtension(
                 name: String,
                 vararg args: Any?,
