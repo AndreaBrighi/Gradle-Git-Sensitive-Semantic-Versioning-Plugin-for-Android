@@ -1,7 +1,8 @@
 import io.github.andreabrighi.gradle.gitsemver.conventionalcommit.ConventionalCommit
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jetbrains.kotlin.config.KotlinCompilerVersion.VERSION as KOTLIN_VERSION
+
+val kotlinVersion = libs.versions.kotlin.get()
 
 plugins {
     `java-gradle-plugin`
@@ -70,8 +71,8 @@ dependencies {
 configurations.all {
     resolutionStrategy.eachDependency {
         if (requested.group == "org.jetbrains.kotlin" && requested.name.startsWith("kotlin")) {
-            useVersion(KOTLIN_VERSION)
-            because("All Kotlin modules should use the same version, and compiler uses $KOTLIN_VERSION")
+            useVersion(kotlinVersion)
+            because("All Kotlin modules should use the same version, and compiler uses $kotlinVersion")
         }
     }
 }
@@ -87,9 +88,9 @@ tasks {
         }
     }
     withType<KotlinCompile> {
-        kotlinOptions {
-            allWarningsAsErrors = true
-            freeCompilerArgs += listOf("-opt-in=kotlin.RequiresOptIn", "-Xinline-classes")
+        compilerOptions {
+            allWarningsAsErrors.set(true)
+            freeCompilerArgs.addAll(listOf("-opt-in=kotlin.RequiresOptIn", "-Xinline-classes"))
         }
     }
 }
