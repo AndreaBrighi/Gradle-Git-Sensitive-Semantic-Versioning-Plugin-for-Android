@@ -146,6 +146,9 @@ open class AndroidGitSemVerExtension
                 computeSemanticVersionCode()
             }
 
+        /**
+         * Contains the DSL entry-point for the Android Git-Sensitive Semantic Versioning plugin.
+         */
         companion object {
             /**
              * The name of the extension, namely of the DSL entry-point.
