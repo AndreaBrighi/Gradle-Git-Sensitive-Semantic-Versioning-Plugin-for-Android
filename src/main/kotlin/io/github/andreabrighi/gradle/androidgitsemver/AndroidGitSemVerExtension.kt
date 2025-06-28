@@ -1,6 +1,7 @@
 package io.github.andreabrighi.gradle.androidgitsemver
 
 import org.danilopianini.gradle.gitsemver.GitSemVerExtension
+import org.gradle.api.Project
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.ProviderFactory
@@ -41,6 +42,7 @@ import kotlin.math.pow
 open class AndroidGitSemVerExtension
     @JvmOverloads
     constructor(
+        project: Project,
         providerFactory: ProviderFactory,
         objectFactory: ObjectFactory,
         projectDir: File,
@@ -53,6 +55,7 @@ open class AndroidGitSemVerExtension
         maxVersionLength: Property<Int> = objectFactory.propertyWithDefault(Int.MAX_VALUE),
         developmentCounterLength: Property<Int> = objectFactory.propertyWithDefault(2),
         enforceSemanticVersioning: Property<Boolean> = objectFactory.propertyWithDefault(true),
+        computeReleaseVersion: Property<Boolean> = objectFactory.propertyWithDefault(false),
         preReleaseSeparator: Property<String> = objectFactory.propertyWithDefault("-"),
         buildMetadataSeparator: Property<String> = objectFactory.propertyWithDefault("+"),
         distanceCounterRadix: Property<Int> = objectFactory.propertyWithDefault(DEFAULT_RADIX),
@@ -64,6 +67,7 @@ open class AndroidGitSemVerExtension
         val versionCodeMinorDigits: Property<Int> = objectFactory.propertyWithDefault(3),
         val versionCodePatchDigits: Property<Int> = objectFactory.propertyWithDefault(3),
     ) : GitSemVerExtension(
+            project,
             providerFactory,
             objectFactory,
             projectDir,
@@ -76,6 +80,7 @@ open class AndroidGitSemVerExtension
             maxVersionLength,
             developmentCounterLength,
             enforceSemanticVersioning,
+            computeReleaseVersion,
             preReleaseSeparator,
             buildMetadataSeparator,
             distanceCounterRadix,
