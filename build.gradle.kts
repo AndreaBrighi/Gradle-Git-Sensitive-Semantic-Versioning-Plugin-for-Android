@@ -97,54 +97,43 @@ tasks {
     }
 }
 
+publishOnCentral {
+    projectDescription.set(info.projectDetails)
+    projectLongName.set(info.fullName)
+    projectUrl.set(info.websiteUrl)
+}
+
 publishing {
-    repositories {
-        maven {
-            url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-            // Pass the pwd via -PmavenCentralPwd='yourPassword'
-            val mavenCentralPwd: String? by project
-            val mavenCentralUser: String? by project
-            credentials {
-                username = mavenCentralUser
-                password = mavenCentralPwd
-            }
-        }
-        publications {
-            val androidSemanticVersion by creating(MavenPublication::class) {
-                from(components["java"])
-                // If the gradle-publish-plugins plugin is applied, these are pre-configured
-                // artifact(javadocJar)
-                // artifact(sourceJar)
-                pom {
-                    name.set(info.fullName)
-                    description.set(info.projectDetails)
-                    url.set(
-                        "https://github.com/" +
-                            "AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android",
-                    )
-                    licenses {
-                        license {
-                            name.set("MIT")
-                        }
-                    }
-                    developers {
-                        developer {
-                            name.set("Andrea Brighi")
-                        }
-                    }
-                    scm {
-                        url.set(
-                            "https://github.com/" +
-                                "AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android.git",
-                        )
-                        connection.set(
-                            "https://github.com/" +
-                                "AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android.git",
-                        )
+    publications {
+        withType<MavenPublication> {
+            pom {
+                name.set(info.fullName)
+                description.set(info.projectDetails)
+                url.set(
+                    "https://github.com/" +
+                        "AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android",
+                )
+                licenses {
+                    license {
+                        name.set("MIT")
                     }
                 }
+                developers {
+                    developer {
+                        name.set("Andrea Brighi")
+                    }
+                }
+                scm {
+                    url.set(
+                        "https://github.com/" +
+                            "AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android.git",
+                    )
+                    connection.set(
+                        "https://github.com/" +
+                            "AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android.git",
+                    )
+                }
             }
-            signing { sign(androidSemanticVersion) }
         }
     }
 }
@@ -156,10 +145,10 @@ if (System.getenv("CI") == "true") {
         useInMemoryPgpKeys(signingKey, signingPassword)
     }
 } else {
-    /*signing {
+    signing {
         useGpgCmd()
         sign(configurations.archives.get())
-    }*/
+    }
 }
 
 gradlePlugin {
