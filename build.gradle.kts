@@ -103,6 +103,14 @@ publishOnCentral {
     projectUrl.set(info.websiteUrl)
     repoOwner.set("AndreaBrighi") // <-- REQUIRED
     licenseName.set("MIT License")
+    repository(
+        "https://maven.pkg.github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android"
+            .lowercase(),
+        name = "github",
+    ) {
+        user.set("AndreaBrighi")
+        password.set(System.getenv("GITHUB_TOKEN"))
+    }
 }
 
 publishing {
