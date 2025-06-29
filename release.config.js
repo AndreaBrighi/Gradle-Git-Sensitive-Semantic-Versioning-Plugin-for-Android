@@ -1,6 +1,6 @@
 var publishCmd = `
 git tag -a -f \${nextRelease.version} \${nextRelease.version} -F CHANGELOG.md || exit 1
-./gradlew publishAllPublicationsToMavenCentral -PsigningKey="$SIGNING_KEY" -PsigningPassword="$SIGNING_PASSWORD" || exit 3
+./gradlew uploadAllToMavenCentralNexus -PsigningKey="$SIGNING_KEY" -PsigningPassword="$SIGNING_PASSWORD" || exit 3
 git push --force origin \${nextRelease.version} || exit 4
 `
 var config = require('semantic-release-preconfigured-conventional-commits');
