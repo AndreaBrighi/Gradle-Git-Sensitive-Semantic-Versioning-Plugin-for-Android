@@ -101,37 +101,19 @@ publishOnCentral {
     projectDescription.set(info.projectDetails)
     projectLongName.set(info.fullName)
     projectUrl.set(info.websiteUrl)
+    repoOwner.set("AndreaBrighi") // <-- REQUIRED
+    licenseName.set("MIT License")
 }
 
 publishing {
     publications {
         withType<MavenPublication> {
             pom {
-                name.set(info.fullName)
-                description.set(info.projectDetails)
-                url.set(
-                    "https://github.com/" +
-                        "AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android",
-                )
-                licenses {
-                    license {
-                        name.set("MIT")
-                    }
-                }
                 developers {
                     developer {
                         name.set("Andrea Brighi")
+                        email.set("andrea.brighi8@studio.unibo.it")
                     }
-                }
-                scm {
-                    url.set(
-                        "https://github.com/" +
-                            "AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android.git",
-                    )
-                    connection.set(
-                        "https://github.com/" +
-                            "AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android.git",
-                    )
                 }
             }
         }
