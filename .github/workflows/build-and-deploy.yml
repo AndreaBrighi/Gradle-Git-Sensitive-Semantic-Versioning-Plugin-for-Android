@@ -10,7 +10,7 @@ jobs:
   compile:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: set up JDK 17
         uses: actions/setup-java@v4
         with:
@@ -45,7 +45,7 @@ jobs:
     steps:
       - if: matrix.os == 'windows'
         run: git config --system core.longpaths true
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: set up JDK ${{ matrix.java }}
         uses: actions/setup-java@v4
         with:
@@ -68,7 +68,7 @@ jobs:
       cancel-in-progress: false
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: set up Node 20
         uses: actions/setup-node@v4
         with:
