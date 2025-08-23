@@ -1,8 +1,11 @@
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.string.shouldContain
-import org.gradle.internal.impldep.org.junit.rules.TemporaryFolder
 import org.gradle.testkit.runner.GradleRunner
+import java.nio.file.Path
 import java.util.concurrent.TimeUnit
+import kotlin.io.path.absolutePathString
+import kotlin.io.path.createFile
+import kotlin.io.path.createTempDirectory
 
 internal class Tests :
     StringSpec(
@@ -124,34 +127,41 @@ internal class Tests :
         },
     ) {
     companion object {
-        fun folder(closure: TemporaryFolder.() -> Unit) =
-            TemporaryFolder().apply {
-                create()
-                closure()
-            }
+        fun folder(closure: Path.() -> Unit) = createTempDirectory("gitSemVerTest").apply(closure)
 
-        fun TemporaryFolder.file(
+        fun Path.file(
             name: String,
             content: () -> String,
-        ) = newFile(name).writeText(content().trimIndent())
+        ) = resolve(name)
+            .createFile()
+            .toFile()
+            .writeText(content().trimIndent())
 
-        fun TemporaryFolder.runCommand(
+        fun Path.runCommand(
             vararg command: String,
             wait: Long = 10,
         ) {
             val process =
                 ProcessBuilder(*command)
-                    .directory(root)
+                    .directory(toFile())
                     .redirectError(ProcessBuilder.Redirect.INHERIT)
                     .redirectOutput(ProcessBuilder.Redirect.INHERIT)
-                    .start()
+                    .apply {
+                        // git command isolation from the operating system environment
+                        environment().let { env ->
+                            env.clear()
+                            env["PATH"] = System.getenv("PATH")
+                            env["HOME"] = resolve(".git/.home.d/").absolutePathString()
+                            env["GIT_CONFIG_NOSYSTEM"] = "true"
+                        }
+                    }.start()
             process.waitFor(wait, TimeUnit.SECONDS)
             require(process.exitValue() == 0) {
                 "command '${command.joinToString(" ")}' failed with exit value ${process.exitValue()}"
             }
         }
 
-        fun TemporaryFolder.runCommand(
+        fun Path.runCommand(
             command: String,
             wait: Long = 10,
         ) = runCommand(
@@ -159,47 +169,35 @@ internal class Tests :
             wait = wait,
         )
 
-        fun TemporaryFolder.initGit() {
+        fun Path.initGit() {
             runCommand("git init")
             runCommand("git add .")
             runCommand("git config user.name gitsemver")
             runCommand("git config user.email none@test.com")
-            runCommand("git config --global init.defaultBranch master")
+            runCommand("git config init.defaultBranch master")
+            runCommand("git config commit.gpgsign no")
             runCommand("git", "commit", "-m", "\"Test commit\"")
         }
 
-        fun TemporaryFolder.initGitWithTag() {
-            initGit()
-            runCommand("git", "tag", "-a", "1.2.3", "-m", "\"test\"")
-        }
-
-        fun TemporaryFolder.moreTags() {
-            runCommand("git add .")
-            runCommand("git", "commit", "-m", "\"Test commit\"")
-            runCommand("git", "tag", "-a", "1.2.4", "-m", "\"test\"")
-        }
-
-        fun TemporaryFolder.moreCommits() {
+        fun Path.moreCommits() {
             file("something") { "something" }
             runCommand("git add .")
             runCommand("git", "commit", "-m", "\"Test commit\"")
         }
 
-        fun TemporaryFolder.runGradle(vararg arguments: String = arrayOf("printGitSemVer", "--stacktrace")): String =
+        fun Path.runGradle(vararg arguments: String = arrayOf("printGitSemVer", "--stacktrace")): String =
             GradleRunner
                 .create()
-                .withProjectDir(root)
+                .withProjectDir(toFile())
                 .withPluginClasspath()
                 .withArguments(*arguments)
                 .build()
                 .output
 
-        fun TemporaryFolder.runGradleCode(
-            vararg arguments: String = arrayOf("printGitSemVerCode", "--stacktrace"),
-        ): String =
+        fun Path.runGradleCode(vararg arguments: String = arrayOf("printGitSemVerCode", "--stacktrace")): String =
             GradleRunner
                 .create()
-                .withProjectDir(root)
+                .withProjectDir(toFile())
                 .withPluginClasspath()
                 .withArguments(*arguments)
                 .build()
@@ -207,8 +205,8 @@ internal class Tests :
 
         fun configuredPlugin(
             pluginConfiguration: String = "",
-            otherChecks: TemporaryFolder.() -> Unit = {},
-        ): TemporaryFolder =
+            otherChecks: Path.() -> Unit = {},
+        ): Path =
             folder {
                 file("settings.gradle") { "rootProject.name = 'testproject'" }
                 file("build.gradle.kts") {
