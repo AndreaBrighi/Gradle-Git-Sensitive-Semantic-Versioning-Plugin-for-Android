@@ -124,6 +124,28 @@ internal class Tests :
                 println(resultCode)
                 resultCode shouldContain "2002265"
             }
+
+            "git tagged + development with change the version update strategy" {
+                val workingDirectory =
+                    configuredPlugin(
+                        """
+                commitNameBasedUpdateStrategy { UpdateType.MAJOR }
+                incrementalCode.set(false)
+                """,
+                    ) {
+                        initGitWithTag()
+                        file("something") { "something" }
+                        runCommand("git add something")
+                        runCommand("git", "commit", "-m", "\"Test commit 2\"")
+                    }
+                val result = workingDirectory.runGradle()
+                println(result)
+                val expectedVersion = "2.0.0"
+                result shouldContain expectedVersion
+                val resultCode = workingDirectory.runGradleCode()
+                println(resultCode)
+                resultCode shouldContain "2000000"
+            }
         },
     ) {
     companion object {
@@ -179,6 +201,11 @@ internal class Tests :
             runCommand("git", "commit", "-m", "\"Test commit\"")
         }
 
+        fun Path.initGitWithTag() {
+            initGit()
+            runCommand("git", "tag", "-a", "1.2.3", "-m", "\"test\"")
+        }
+
         fun Path.moreCommits() {
             file("something") { "something" }
             runCommand("git add .")
@@ -211,6 +238,9 @@ internal class Tests :
                 file("settings.gradle") { "rootProject.name = 'testproject'" }
                 file("build.gradle.kts") {
                     """
+                    import org.danilopianini.gradle.gitsemver.* 
+                        
+                        
                     plugins {
                         id("io.github.andreabrighi.git-semver")
                     }
