@@ -159,7 +159,7 @@ open class AndroidGitSemVerExtension
 
             private const val MAX_DIGITS = 9
 
-            private inline fun <reified T> ObjectFactory.propertyWithDefault(default: T): Property<T> =
+            private inline fun <reified T : Any> ObjectFactory.propertyWithDefault(default: T): Property<T> =
                 property(T::class.java).apply { convention(default) }
         }
     }
