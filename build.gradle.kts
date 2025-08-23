@@ -56,7 +56,7 @@ repositories {
 }
 
 multiJvm {
-    jvmVersionForCompilation = 11
+    jvmVersionForCompilation = oldestJavaSupportedByGradle
     maximumSupportedJvmVersion = latestJavaSupportedByGradle
 }
 
@@ -73,7 +73,7 @@ configurations.matching { it.name != "detekt" }.all {
 dependencies {
     api(gradleApi())
     api(gradleKotlinDsl())
-    implementation(kotlin("stdlib-jdk8"))
+    implementation(kotlin("stdlib"))
     implementation(libs.git.sem.ver)
     testImplementation(gradleTestKit())
     testImplementation(libs.bundles.kotlin.testing)
