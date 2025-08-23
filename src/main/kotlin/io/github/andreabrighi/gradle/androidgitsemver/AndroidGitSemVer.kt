@@ -27,29 +27,17 @@ class AndroidGitSemVer
                 val extension =
                     createExtension<AndroidGitSemVerExtension>(
                         AndroidGitSemVerExtension.EXTENSION_NAME,
+                        this,
                         providerFactory,
                         objectFactory,
                         projectDir,
-                        version,
                         logger,
                     )
-                afterEvaluate {
-                    properties[extension.forceVersionPropertyName.get()]?.let { forceVersion ->
-                        require(SemanticVersion.semVerRegex.matches(it.toString())) {
-                            "The version '$it' is not a valid semantic versioning format"
-                        }
-                        logger.lifecycle(
-                            "Forcing version to $it, mandated by property '$extension.forceVersionPropertyName'",
-                        )
-                        version = forceVersion
-                    } ?: run { version = extension.assignGitSemanticVersion() }
-                }
+                project.version = extension.gitSensitiveSemanticVersion
                 tasks.register("printGitSemVer") {
-                    val forceVersion = properties[extension.forceVersionPropertyName.get()]
                     it.doLast {
                         println(
-                            "Version computed by ${GitSemVer::class.java.simpleName}: " +
-                                "${forceVersion ?: extension.computeVersion()}",
+                            "Version computed by ${GitSemVer::class.java.simpleName}: ${extension.gitSensitiveSemanticVersion}",
                         )
                     }
                 }
