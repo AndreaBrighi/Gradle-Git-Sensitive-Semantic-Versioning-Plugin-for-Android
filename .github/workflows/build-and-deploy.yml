@@ -70,7 +70,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v5
       - name: set up Node 20
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 22
       - name: set up JDK 17
