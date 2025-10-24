@@ -4,9 +4,34 @@
     "github>DanySK/renovate-config:gradle-plugin"
   ],
   "packageRules": [
-    { "updateTypes": ["major"], "addLabels": ["SemVer Major"] },
-    { "updateTypes": ["minor"], "addLabels": ["SemVer Minor"] },
-    { "updateTypes": ["patch", "digest", "bump"], "addLabels": ["SemVer Patch"] }
+    {
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "addLabels": [
+        "SemVer Major"
+      ]
+    },
+    {
+      "matchUpdateTypes": [
+        "minor"
+      ],
+      "addLabels": [
+        "SemVer Minor"
+      ]
+    },
+    {
+      "matchUpdateTypes": [
+        "patch",
+        "digest",
+        "bump"
+      ],
+      "addLabels": [
+        "SemVer Patch"
+      ]
+    }
   ],
-  "schedule": ["every weekend"]
+  "schedule": [
+    "every weekend"
+  ]
 }
