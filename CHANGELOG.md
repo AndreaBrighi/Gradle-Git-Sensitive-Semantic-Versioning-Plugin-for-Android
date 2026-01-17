@@ -1,3 +1,13 @@
+## [5.0.7](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/5.0.6...5.0.7) (2026-01-17)
+
+### Dependency updates
+
+* **core-deps:** update gradle to v9.3.0 ([#471](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/issues/471)) ([b556ac5](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/b556ac5addb93372224c66ba88d4c0299c801d87))
+* **deps:** update gitsemver to v7.0.9 ([#466](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/issues/466)) ([cdd59a9](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/cdd59a97dfcf265319411192a5955371eba8f978))
+* **deps:** update plugin com.gradle.develocity to v4.3.1 ([#467](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/issues/467)) ([8458f75](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/8458f75e39f47c7bb8ec7a63845cd5f5374ab66d))
+* **deps:** update plugin org.danilopianini.gradle-pre-commit-git-hooks to v2.1.7 ([#469](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/issues/469)) ([9ec0308](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/9ec0308b18477c0cc35dfe950cee339366e1dc3b))
+* **deps:** update plugin publishoncentral to v9.1.9 ([#463](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/issues/463)) ([c567107](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/c56710740ae1d84516cd8479a67b70114d4c0d2b))
+
 ## [5.0.6](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/5.0.5...5.0.6) (2026-01-03)
 
 ### Dependency updates
