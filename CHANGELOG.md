@@ -1,3 +1,13 @@
+## [5.0.14](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/5.0.13...5.0.14) (2026-05-06)
+
+### Dependency updates
+
+* **core-deps:** update dependency org.jetbrains.kotlin.jvm to v2.3.21 ([cdf85f4](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/cdf85f4a2009af0c1a12395252f92d7f64d6813c))
+
+### Build and continuous integration
+
+* update compiler options to exclude -Xinline-classes ([46726f2](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/46726f258be5545befe0bb4490607858ab97b764))
+
 ## [5.0.13](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/5.0.12...5.0.13) (2026-05-03)
 
 ### Dependency updates
