@@ -1,7 +1,7 @@
 [versions]
 dokka = "2.2.0"
 kotlin = "2.4.10"
-kotest = "6.2.3"
+kotest = "6.2.4"
 gitSemVer = "7.0.20"
 
 [libraries]
