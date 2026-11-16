@@ -50,12 +50,12 @@ class AndroidGitSemVer
                 }
 
                 tasks.register("printGitSemVerCode") {
-                    val forceVersion = properties[extension.forceVersionPropertyName.get()]
+                    val forceVersion = providers.gradleProperty(extension.forceVersionPropertyName.get())
                     it.doLast {
                         println(
                             "Version Code computed by " +
                                 "${GitSemVer::class.java.simpleName}: " +
-                                "${forceVersion ?: extension.computeVersionCode()}",
+                                "${forceVersion.orNull ?: extension.computeVersionCode()}",
                         )
                     }
                 }
