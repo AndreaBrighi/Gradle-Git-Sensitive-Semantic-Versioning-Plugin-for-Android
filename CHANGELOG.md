@@ -1,3 +1,14 @@
+## [5.0.19](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/5.0.18...5.0.19) (2026-11-16)
+
+### Dependency updates
+
+* **core-deps:** update gradle to v9.6.1 ([062034d](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/062034d27a209b2bb701b4f085de5072b2ed0845))
+* **deps:** update gitsemver to v7.2.0 ([150a7fd](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/150a7fdd1152ed186807806bd1099693f8fea004))
+
+### Bug Fixes
+
+* update property access to use providers for forceVersion and signing credentials ([d9876cf](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/d9876cf1846adc1b8b0af8599159d063f6a0be39))
+
 ## [5.0.18](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/5.0.17...5.0.18) (2026-11-16)
 
 ### Dependency updates
