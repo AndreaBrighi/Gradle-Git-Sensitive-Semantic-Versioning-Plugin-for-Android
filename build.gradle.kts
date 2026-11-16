@@ -61,14 +61,18 @@ multiJvm {
 }
 
 // Enforce Kotlin version coherence
-configurations.matching { it.name != "detekt" }.all {
-    resolutionStrategy.eachDependency {
-        if (requested.group == "org.jetbrains.kotlin" && requested.name.startsWith("kotlin")) {
-            useVersion(kotlinVersion)
-            because("All Kotlin modules should use the same version, and compiler uses $kotlinVersion")
+configurations
+    .matching {
+        !it.name.contains("detekt", ignoreCase = true) &&
+            !it.name.contains("ktlint", ignoreCase = true)
+    }.all {
+        resolutionStrategy.eachDependency {
+            if (requested.group == "org.jetbrains.kotlin" && requested.name.startsWith("kotlin")) {
+                useVersion(kotlinVersion)
+                because("All Kotlin modules should use the same version, and compiler uses $kotlinVersion")
+            }
         }
     }
-}
 
 dependencies {
     api(gradleApi())
@@ -86,7 +90,7 @@ tasks {
             showCauses = true
             showStackTraces = true
             showStandardStreams = true
-            events(*TestLogEvent.values())
+            events(*TestLogEvent.entries.toTypedArray())
         }
     }
     withType<KotlinCompile> {
