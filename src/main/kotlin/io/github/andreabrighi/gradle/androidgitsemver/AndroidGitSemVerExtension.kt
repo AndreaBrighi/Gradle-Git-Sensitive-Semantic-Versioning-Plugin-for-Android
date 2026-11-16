@@ -1,10 +1,12 @@
 package io.github.andreabrighi.gradle.androidgitsemver
 
+import org.danilopianini.gradle.gitsemver.ForcedVersionLoggerService
 import org.danilopianini.gradle.gitsemver.GitSemVerExtension
 import org.danilopianini.gradle.gitsemver.UpdateType
 import org.gradle.api.Project
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.Property
+import org.gradle.api.provider.Provider
 import org.gradle.api.provider.ProviderFactory
 import org.slf4j.Logger
 import java.io.File
@@ -48,11 +50,14 @@ open class AndroidGitSemVerExtension
         objectFactory: ObjectFactory,
         projectDir: File,
         logger: Logger,
+        forcedVersionLogger: Provider<ForcedVersionLoggerService>,
         buildMetadataSeparator: Property<String> = objectFactory.propertyWithDefault("+"),
         computeReleaseVersion: Property<Boolean> = objectFactory.propertyWithDefault(false),
         developmentCounterLength: Property<Int> = objectFactory.propertyWithDefault(2),
         developmentIdentifier: Property<String> = objectFactory.propertyWithDefault("dev"),
         distanceCounterRadix: Property<Int> = objectFactory.propertyWithDefault(DEFAULT_RADIX),
+        enableBuildMetadata: Property<Boolean> = objectFactory.propertyWithDefault(true),
+        enableDistanceCounter: Property<Boolean> = objectFactory.propertyWithDefault(true),
         enforceSemanticVersioning: Property<Boolean> = objectFactory.propertyWithDefault(true),
         forceVersionPropertyName: Property<String> = objectFactory.propertyWithDefault("forceVersion"),
         fullHash: Property<Boolean> = objectFactory.propertyWithDefault(false),
@@ -73,11 +78,14 @@ open class AndroidGitSemVerExtension
             objectFactory,
             projectDir,
             logger,
+            forcedVersionLogger,
             buildMetadataSeparator,
             computeReleaseVersion,
             developmentCounterLength,
             developmentIdentifier,
             distanceCounterRadix,
+            enableBuildMetadata,
+            enableDistanceCounter,
             enforceSemanticVersioning,
             forceVersionPropertyName,
             fullHash,
