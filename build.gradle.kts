@@ -45,7 +45,7 @@ class ProjectInfo {
     val vcsUrl = "https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android.git"
 
     // val scm = "scm:git:$websiteUrl.git"
-    val tags = listOf("git", "semver", "semantic versioning", "vcs", "tag", "android")
+    val tags = listOf("git", "semver", "semantic_versioning", "vcs", "tag", "android")
 }
 
 val info = ProjectInfo()
