@@ -1,3 +1,9 @@
+## [5.0.20](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/5.0.19...5.0.20) (2026-11-17)
+
+### Dependency updates
+
+* **core-deps:** update gradle to v9.7.1 ([9dc0558](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/9dc0558557be665d41670d632480b4009642328c))
+
 ## [5.0.19](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/5.0.18...5.0.19) (2026-11-16)
 
 ### Dependency updates
