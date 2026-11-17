@@ -1,3 +1,17 @@
+## [5.1.0](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/5.0.22...5.1.0) (2026-11-17)
+
+### Features
+
+* add GitRepositoryStateService for enhanced version management (adapted to gitsemver 7.3.0) ([5a212a4](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/5a212a4de38607ea4a3ec28e315f6d52e689da6c))
+
+### Dependency updates
+
+* **deps:** update gitsemver ([51c23e1](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/51c23e11e4a2fa9491817f555a3c9c36be2561a7))
+
+### Bug Fixes
+
+* **release:** update tags list to use underscores for semantic versioning consistency ([1770d7f](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/1770d7f1709ea8f930f936d696481fa7e5fa1bc2))
+
 ## [5.0.22](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/5.0.21...5.0.22) (2026-11-17)
 
 ### Dependency updates
