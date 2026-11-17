@@ -1,3 +1,9 @@
+## [5.0.21](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/5.0.20...5.0.21) (2026-11-17)
+
+### Dependency updates
+
+* **core-deps:** update gradle to v9.8.2 ([e380436](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/commit/e380436018281188b2726075e78da8a84a0cc807))
+
 ## [5.0.20](https://github.com/AndreaBrighi/Gradle-Git-Sensitive-Semantic-Versioning-Plugin-for-Android/compare/5.0.19...5.0.20) (2026-11-17)
 
 ### Dependency updates
