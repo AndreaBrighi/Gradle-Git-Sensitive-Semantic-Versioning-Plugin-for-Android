@@ -1,6 +1,7 @@
 package io.github.andreabrighi.gradle.androidgitsemver
 
 import org.danilopianini.gradle.gitsemver.ForcedVersionLoggerService
+import org.danilopianini.gradle.gitsemver.GitRepositoryStateService
 import org.danilopianini.gradle.gitsemver.GitSemVer
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -29,6 +30,11 @@ class AndroidGitSemVer
                         "gitSemVerForcedVersionLogger",
                         ForcedVersionLoggerService::class.java,
                     ) {}
+                val repositoryStates =
+                    gradle.sharedServices.registerIfAbsent(
+                        "gitSemVerRepositoryStates",
+                        GitRepositoryStateService::class.java,
+                    ) {}
                 val extension =
                     createExtension<AndroidGitSemVerExtension>(
                         AndroidGitSemVerExtension.EXTENSION_NAME,
@@ -38,6 +44,7 @@ class AndroidGitSemVer
                         projectDir,
                         logger,
                         forcedVersionLogger,
+                        repositoryStates,
                     )
                 project.version = extension.gitSensitiveSemanticVersion
                 tasks.register("printGitSemVer") {
