@@ -1,6 +1,7 @@
 package io.github.andreabrighi.gradle.androidgitsemver
 
 import org.danilopianini.gradle.gitsemver.ForcedVersionLoggerService
+import org.danilopianini.gradle.gitsemver.GitRepositoryStateService
 import org.danilopianini.gradle.gitsemver.GitSemVerExtension
 import org.danilopianini.gradle.gitsemver.UpdateType
 import org.gradle.api.Project
@@ -17,7 +18,8 @@ import kotlin.math.pow
  *
  * Supports the following properties:
  * - [minimumVersion], defaulting to 0.1.0
- * - [developmentIdentifier], the identifier for the in-development versions
+ * - [developmentIdentifier], the identifier for the in-development versions.
+ *      It can be blank only if [enableDistanceCounter] is false
  * - [noTagIdentifier], the identifier for early versions of the project, when no tags are available yet
  * - [fullHash], whether to use the full commit hash as build metadata
  * - [maxVersionLength], cuts the version to the specified length. Useful for some destinations,
@@ -25,12 +27,22 @@ import kotlin.math.pow
  * - [developmentCounterLength], how many digits to use for the counter
  * - [enforceSemanticVersioning], whether the system should fail or just warn
  *      in case a non-SemVer compatible version gets produced
+ * - [computeReleaseVersion], determines whether the version is to be calculated for the release or pre-release
+ *      (default behavior)
  * - [preReleaseSeparator], how to separate the pre-release information.
  *      Changing this value may generate non-SemVer-compatible versions.
  * - [buildMetadataSeparator], how to separate the pre-release information.
  *      Some destinations (e.g., the Gradle Plugin Portal) do not support the default value '+'.
  *      A reasonable alternative is using '-', lifting the build metadata to a pre-release segment.
  * - [distanceCounterRadix], the radix for the commit counter. Defaults to base 36. Bases from 2 to 36 allowed.
+ * - [enableBuildMetadata], whether to append the build metadata (commit hash or timestamp) to non-release versions.
+ *      Disabling it, along with [enableDistanceCounter], allows generating Maven-style snapshot versions
+ *      (e.g., 1.2.4-SNAPSHOT, with [developmentIdentifier] set to "SNAPSHOT").
+ * - [enableDistanceCounter], whether to append the commit distance from the latest tag to the
+ *      [developmentIdentifier] in development versions.
+ * - [enableDirtyMarker], whether to append [dirtyIdentifier] to the build metadata when tracked files
+ *      have uncommitted changes (untracked files are ignored, as in `git describe --dirty`).
+ * - [dirtyIdentifier], the build metadata identifier marking uncommitted changes, defaulting to "dirty".
  * - [versionPrefix], to be used in case tags are prefixed with some symbols before the semantic version
  *      (e.g., v1.0.0 is prefixed with "v").
  * - [includeLightweightTags], to be used in case lightweight tags should be considered.
@@ -51,12 +63,15 @@ open class AndroidGitSemVerExtension
         projectDir: File,
         logger: Logger,
         forcedVersionLogger: Provider<ForcedVersionLoggerService>,
+        repositoryStates: Provider<GitRepositoryStateService>,
         buildMetadataSeparator: Property<String> = objectFactory.propertyWithDefault("+"),
         computeReleaseVersion: Property<Boolean> = objectFactory.propertyWithDefault(false),
         developmentCounterLength: Property<Int> = objectFactory.propertyWithDefault(2),
         developmentIdentifier: Property<String> = objectFactory.propertyWithDefault("dev"),
+        dirtyIdentifier: Property<String> = objectFactory.propertyWithDefault("dirty"),
         distanceCounterRadix: Property<Int> = objectFactory.propertyWithDefault(DEFAULT_RADIX),
         enableBuildMetadata: Property<Boolean> = objectFactory.propertyWithDefault(true),
+        enableDirtyMarker: Property<Boolean> = objectFactory.propertyWithDefault(false),
         enableDistanceCounter: Property<Boolean> = objectFactory.propertyWithDefault(true),
         enforceSemanticVersioning: Property<Boolean> = objectFactory.propertyWithDefault(true),
         forceVersionPropertyName: Property<String> = objectFactory.propertyWithDefault("forceVersion"),
@@ -79,12 +94,15 @@ open class AndroidGitSemVerExtension
             projectDir,
             logger,
             forcedVersionLogger,
+            repositoryStates,
             buildMetadataSeparator,
             computeReleaseVersion,
             developmentCounterLength,
             developmentIdentifier,
+            dirtyIdentifier,
             distanceCounterRadix,
             enableBuildMetadata,
+            enableDirtyMarker,
             enableDistanceCounter,
             enforceSemanticVersioning,
             forceVersionPropertyName,
